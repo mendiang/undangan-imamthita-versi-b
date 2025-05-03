@@ -1,17 +1,27 @@
+/* Tambahkan ini di paling atas style.css */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Sacramento&display=swap');
+
 body {
-    font-family: sans-serif; /* Font dasar sementara */
+    font-family: 'Josefin Sans', sans-serif; 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-align: center; /* Rata tengah konten sementara */
     background-color: #f4f4f4; /* Warna latar belakang lembut */
     color: #333; /* Warna teks dasar */
 }
 
+/* Tambahkan kelas untuk font estetik */
+.font-esthetic {
+    font-family: 'Sacramento', cursive;
+    font-weight: normal; /* Sacramento biasanya tidak perlu bold */
+}
+
 header#hero {
-    background-color: #e2e2e2; /* Warna latar belakang bagian hero */
+    /* Hapus background-color jika ingin pakai background image nanti */
+    /* background-color: #e2e2e2; */
     padding: 40px 20px;
     margin-bottom: 30px;
+    text-align: center; /* Pusatkan teks di hero */
 }
 
 header#hero img {
@@ -28,10 +38,17 @@ section {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Atur ulang styling mempelai dengan Bootstrap grid */
+section#mempelai .row {
+    align-items: center; /* Pusatkan vertikal jika perlu */
+}
+
 section#mempelai img {
     border-radius: 50%;
     border: 3px solid #eee;
     margin-top: 10px;
+    max-width: 150px; /* Batasi ukuran maks gambar */
+    height: auto; /* Jaga rasio aspek */
 }
 
 section#mempelai div {

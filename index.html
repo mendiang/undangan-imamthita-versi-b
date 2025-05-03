@@ -29,17 +29,19 @@
         <img src="images/foto-utama.jpeg" alt="Foto Utama" width="200"> <!-- Ganti nama file gambar -->
     </header>
 
-    <section id="mempelai">
-        <h2>Pasangan Mempelai</h2>
-        <div>
-            <h3>Imam Mukhri</h3>
-            <p>Putra dari Bapak Mukhlish Irsan & Ibu Asripa Rahmiwaty</p>
-            <img src="images/foto-pria.jpeg" alt="Foto Pria" width="150"> <!-- Ganti nama file gambar -->
-        </div>
-        <div>
-            <h3>Thita Rahania Nasution</h3>
-            <p>Putri dari Bapak Sutara Azhar Nasution & Ibu Muthia Amalia Lubis</p>
-            <img src="images/foto-wanita.jpeg" alt="Foto Wanita" width="150"> <!-- Ganti nama file gambar -->
+    <section id="mempelai" class="container"><!-- Tambah class container Bootstrap -->
+        <h2 class="text-center mb-4">Pasangan Mempelai</h2><!-- Class text-center & margin-bottom -->
+        <div class="row text-center"><!-- Buat baris, rata tengah -->
+            <div class="col-md-6 mb-4"> <!-- Kolom 1 (setengah layar di medium, penuh di mobile), margin bawah -->
+                <img src="images/foto-pria.jpeg" alt="Foto Pria" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
+                <h3 class="font-esthetic">Imam Mukhri</h3>
+                <p>Putra dari Bapak Mukhlish Irsan & Ibu Asripa Rahmiwaty</p>
+            </div>
+            <div class="col-md-6 mb-4"> <!-- Kolom 2 -->
+                <img src="images/foto-wanita.jpeg" alt="Foto Wanita" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
+                <h3 class="font-esthetic">Thita Rahania Azlia Nasution</h3>
+                <p>Putri dari Bapak Sutara Azhar Nasution & Ibu Muthia Amalia Lubis</p>
+            </div>
         </div>
     </section>
 
