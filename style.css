@@ -17,11 +17,46 @@ body {
 }
 
 header#hero {
-    /* Hapus background-color jika ingin pakai background image nanti */
-    /* background-color: #e2e2e2; */
-    padding: 40px 20px;
-    margin-bottom: 30px;
-    text-align: center; /* Pusatkan teks di hero */
+    /* background-color: #D2B48C; /* Contoh warna tema - sesuaikan */
+    background-image: url('images/background-utama.jpeg'); /* Ganti dg gambar background jika ada */
+    background-size: cover;
+    background-position: center;
+    color: #fff; /* Warna teks putih jika background gelap */
+    padding: 60px 20px;
+    margin-bottom: 0;
+    position: relative; /* Untuk overlay jika perlu */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Bayangan teks agar terbaca */
+}
+
+/* Jika pakai background image, mungkin perlu overlay gelap */
+/* header#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay gelap transparan */
+    /* z-index: 1; */
+/* } */
+
+/* Pastikan konten di atas overlay */
+/* header#hero > * {
+    position: relative;
+    z-index: 2;
+} */
+
+header#hero h1 {
+    font-size: 2.5rem; /* Sesuaikan ukuran */
+    margin-bottom: 0.5rem;
+}
+header#hero h2 {
+    font-size: 1.8rem; /* Sesuaikan ukuran */
+    margin-bottom: 1rem;
+}
+header#hero p {
+    font-size: 1.1rem; /* Sesuaikan ukuran */
+    margin-bottom: 1.5rem;
 }
 
 header#hero img {
