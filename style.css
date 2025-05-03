@@ -90,17 +90,25 @@ section#mempelai div {
     margin-bottom: 20px; /* Jarak antar info mempelai */
 }
 
+section#galeri {
+    background-color: #f4f4f4; /* Background beda */
+}
+
 section#galeri img {
-    margin: 5px;
-    border: 1px solid #ccc;
-    padding: 3px;
+    /* Tidak perlu styling khusus jika sudah pakai class Bootstrap */
+    cursor: pointer; /* Tanda bisa diklik (untuk modal nanti) */
+    transition: transform 0.3s ease; /* Efek hover nanti */
+}
+
+section#galeri img:hover {
+    transform: scale(1.05); /* Sedikit membesar saat hover */
 }
 
 footer {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: #333;
-    color: white;
+    /* margin-top: 40px; Dihapus jika tidak perlu */
+    padding: 30px 20px;
+    background-color: #333; /* Warna gelap */
+    color: rgba(255, 255, 255, 0.8); /* Putih agak transparan */
     font-size: 0.9em;
 }
 
