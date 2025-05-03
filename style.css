@@ -112,3 +112,30 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+section#tanggal-lokasi {
+    background-color: #fff; /* Atau warna tema lain */
+}
+section#tanggal-lokasi .shadow { /* Styling untuk box */
+     background-color: #f8f9fa; /* Warna sedikit beda */
+     border: 1px solid #eee;
+}
+section#tanggal-lokasi h3 {
+     font-size: 2rem;
+     margin-bottom: 1.5rem;
+     color: #A0522D; /* Contoh warna tema - sesuaikan */
+}
+ section#tanggal-lokasi p {
+     margin-bottom: 0.8rem;
+     font-size: 1rem;
+}
+ /* Styling untuk tombol lihat peta (override Bootstrap jika perlu) */
+ .btn-outline-dark {
+     /* Ganti warna border/hover jika mau */
+     border-color: #A0522D;
+     color: #A0522D;
+ }
+ .btn-outline-dark:hover {
+     background-color: #A0522D;
+     color: white;
+ }
