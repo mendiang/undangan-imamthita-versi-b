@@ -1,0 +1,62 @@
+body {
+    font-family: sans-serif; /* Font dasar sementara */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center; /* Rata tengah konten sementara */
+    background-color: #f4f4f4; /* Warna latar belakang lembut */
+    color: #333; /* Warna teks dasar */
+}
+
+header#hero {
+    background-color: #e2e2e2; /* Warna latar belakang bagian hero */
+    padding: 40px 20px;
+    margin-bottom: 30px;
+}
+
+header#hero img {
+    border-radius: 50%; /* Membuat gambar utama jadi bulat */
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin-top: 20px;
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: white; /* Latar belakang putih untuk tiap bagian */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section#mempelai img {
+    border-radius: 50%;
+    border: 3px solid #eee;
+    margin-top: 10px;
+}
+
+section#mempelai div {
+    margin-bottom: 20px; /* Jarak antar info mempelai */
+}
+
+section#galeri img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    padding: 3px;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 0.9em;
+}
+
+a {
+    color: #007bff; /* Warna link biru */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
