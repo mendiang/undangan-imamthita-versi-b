@@ -27,7 +27,6 @@
 </head>
 <body>
 
-    <body>
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="loading-page"> <!-- Pakai class loading-page untuk styling awal -->
              <div class="d-flex justify-content-center align-items-center vh-100 text-center">
@@ -60,7 +59,7 @@
 
     <!-- Contoh SVG Separator -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="section-separator">
-        <path fill="#ffffff" fill-opacity="1" d="M0,160L..."></path> <!-- Ganti fill="#ffffff" dg warna background section di bawahnya -->
+        <path fill="#ffffff" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,154.7C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">"></path> <!-- Ganti fill="#ffffff" dg warna background section di bawahnya -->
     </svg>
 
     <section id="mempelai" class="container" data-aos="fade-up">
@@ -134,13 +133,13 @@
             <div class="col-md-4 col-6"> <!-- 3 kolom di desktop, 2 di mobile -->
                 <img src="images/gallery1.jpeg" alt="Galeri 1" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
             </div>
-            <div class="col-md-4 col-6"></div>
+            <div class="col-md-4 col-6">
                 <img src="images/gallery2.jpeg" alt="Galeri 2" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
             </div>
-            <div class="col-md-4 col-6"></div>
+            <div class="col-md-4 col-6">
                 <img src="images/gallery3.jpeg" alt="Galeri 3" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> 
             </div>
-            <div class="col-md-4 col-6"></div>
+            <div class="col-md-4 col-6">
                 <img src="images/gallery4.jpeg" alt="Galeri 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> <!-- Tambah jika perlu -->
             </div><!-- Tambahkan div kolom lagi sesuai jumlah foto -->
         </div><!-- Untuk Carousel seperti contoh, perlu struktur HTML Carousel Bootstrap -->
@@ -157,6 +156,67 @@
       </div>
     </div>
     </div>
+
+    <!-- Love Gift Section -->
+    <section id="love-gift" class="container py-5 text-center">
+        <h2 class="font-esthetic mb-4">Kirim Hadiah</h2>
+        <p class="mb-5 lead" style="font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Doa restu Anda adalah hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, kami ucapkan terima kasih.
+        </p>
+
+        <div class="row justify-content-center g-4">
+
+            <!-- Kolom Bank Transfer -->
+            <div class="col-md-5" data-aos="fade-up">
+                <div class="card shadow-sm h-100"> <!-- Card Bootstrap, tinggi 100% agar sama rata -->
+                    <div class="card-body">
+                        <h4 class="font-esthetic mb-3"> <i class="fas fa-money-bill-wave me-2"></i> Transfer Bank</h4>
+                        <img src="images/logo-bri.png" alt="Logo Bank BRI" style="max-height: 35px;" class="mb-3"> <!-- Ganti logo bank jika perlu -->
+                        <p class="mb-1">Bank Rakyat Indonesia (BRI)</p>
+                        <p class="fw-bold fs-5 mb-2" id="norek">7018 0100 6421 505</p> <!-- Ganti No Rek -->
+                        <p class="mb-3">a.n. IMAM MUKHRI</p> <!-- Ganti Nama -->
+                        <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard('7018 0100 6421 505', this)">
+                            <i class="fas fa-copy me-1"></i> Salin No. Rekening
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Kolom Kirim Kado / Alamat -->
+        <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h4 class="font-esthetic mb-3"><i class="fas fa-gift me-2"></i> Kirim Kado</h4>
+                    <p class="mb-1">Silakan kirim ke alamat:</p>
+                    <p id="alamat" class="mb-3" style="font-size: 0.9rem;">
+                       [Alamat Lengkap Anda untuk Pengiriman Kado, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos]
+                    </p> <!-- Ganti Alamat -->
+                    <p class="mb-1 fw-bold">a.n. [Nama Penerima Kado]</p> <!-- Ganti Nama Penerima -->
+                     <p class="mb-3" style="font-size: 0.9rem;">No. HP: [Nomor HP Penerima]</p> <!-- Ganti No HP -->
+                    <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard(document.getElementById('alamat').innerText, this)">
+                       <i class="fas fa-copy me-1"></i> Salin Alamat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+         <!-- (Opsional) Kolom QRIS -->
+         <!--
+         <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
+             <div class="card shadow-sm h-100">
+                 <div class="card-body">
+                     <h4 class="font-esthetic mb-3"><i class="fas fa-qrcode me-2"></i> QRIS</h4>
+                     <p class="mb-3">Scan QR Code di bawah ini:</p>
+                     <img src="images/qris.png" alt="QRIS Code" class="img-fluid rounded mb-3" style="max-width: 200px;"> <!- Ganti Gambar QRIS ->
+                     <p class="fw-bold">a.n. [Nama di Akun QRIS]</p> <!- Ganti Nama ->
+                 </div>
+             </div>
+         </div>
+         -->
+
+    </div>
+</section>
+<!-- Akhir Love Gift Section -->
 
     <footer class="container-fluid text-center py-4"> <!-- Lebar penuh, padding -->
         <p class="mb-1">Terima kasih atas doa restunya.</p>

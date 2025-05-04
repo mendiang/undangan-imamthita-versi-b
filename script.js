@@ -109,26 +109,6 @@ function openInvitation() {
 // 4. Tambahkan event listener ke tombol buka undangan
 openButton.addEventListener('click', openInvitation);
 
-// --- Sisa Kode JS (musik, modal, dll) ---
-console.log("Script.js loaded!");
-
-// --- Inisialisasi AOS ---
-// Pastikan ini dijalankan setelah DOM siap,
-// event listener 'DOMContentLoaded' adalah cara yang aman
-document.addEventListener('DOMContentLoaded', (event) => {
-    AOS.init({
-        duration: 800, // Durasi animasi dalam ms
-        once: true, // Animasi hanya terjadi sekali
-        offset: 50, // Jarak trigger animasi sebelum elemen terlihat (px)
-    });
-    console.log("AOS Initialized");
-});
-
-
-console.log("Script.js loaded!"); // Ini mungkin akan log sebelum DOM siap
-
-// --- Bagian Kode Sebelumnya ---
-
 // --- Logika Countdown Timer ---
 
 // 1. Tentukan Tanggal Tujuan (Ganti dengan tanggal & waktu acara Anda!)
@@ -175,7 +155,83 @@ const countdownInterval = setInterval(function() {
 
 }, 1000); // Update setiap 1000ms = 1 detik
 
-// --- Sisa Kode JS ---
-// --- Inisialisasi AOS (dalam DOMContentLoaded) ---
-// ...
+// --- Fungsi untuk Menyalin Teks ke Clipboard ---
+function copyToClipboard(textToCopy, buttonElement) {
+    // Coba gunakan API Clipboard modern jika didukung (lebih aman)
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Sukses menyalin
+            const originalText = buttonElement.innerHTML; // Simpan teks asli tombol
+            buttonElement.innerHTML = '<i class="fas fa-check me-1"></i> Tersalin!'; // Ganti teks tombol
+            buttonElement.disabled = true; // Nonaktifkan tombol sementara
+
+            // Kembalikan teks tombol setelah beberapa detik
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;
+                buttonElement.disabled = false;
+            }, 2000); // 2 detik
+
+        }).catch(err => {
+            // Gagal menyalin dengan API modern
+            console.error('Gagal menyalin dengan Clipboard API: ', err);
+            tryDeprecatedCopy(textToCopy, buttonElement); // Coba cara lama
+        });
+    } else {
+        // Jika API Clipboard tidak didukung, coba cara lama
+        console.warn('Clipboard API tidak didukung, mencoba cara lama.');
+        tryDeprecatedCopy(textToCopy, buttonElement);
+    }
+}
+
+// Fungsi cara lama (fallback), mungkin tidak selalu berfungsi di browser modern
+function tryDeprecatedCopy(textToCopy, buttonElement) {
+    const textArea = document.createElement("textarea");
+    textArea.value = textToCopy;
+
+    // Hindari scroll ke bawah saat elemen ditambahkan
+    textArea.style.position = 'fixed';
+    textArea.style.top = '-9999px';
+    textArea.style.left = '-9999px';
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            const originalText = buttonElement.innerHTML;
+            buttonElement.innerHTML = '<i class="fas fa-check me-1"></i> Tersalin!';
+            buttonElement.disabled = true;
+            setTimeout(() => {
+                buttonElement.innerHTML = originalText;
+                buttonElement.disabled = false;
+            }, 2000);
+        } else {
+             alert('Gagal menyalin. Coba salin manual.');
+             console.error('Gagal menyalin dengan execCommand.');
+        }
+    } catch (err) {
+         alert('Gagal menyalin. Coba salin manual.');
+         console.error('Gagal menyalin dengan execCommand: ', err);
+    }
+
+    document.body.removeChild(textArea);
+}
+
+// --- Sisa Kode JS (musik, modal, dll) ---
+console.log("Script.js loaded!");
+
+// --- Inisialisasi AOS ---
+// Pastikan ini dijalankan setelah DOM siap,
+// event listener 'DOMContentLoaded' adalah cara yang aman
+document.addEventListener('DOMContentLoaded', (event) => {
+    AOS.init({
+        duration: 800, // Durasi animasi dalam ms
+        once: true, // Animasi hanya terjadi sekali
+        offset: 50, // Jarak trigger animasi sebelum elemen terlihat (px)
+    });
+    console.log("AOS Initialized");
+});
+
 console.log("Script.js loaded!");

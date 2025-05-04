@@ -220,3 +220,58 @@ section {
      /* Pastikan tidak ada margin-top jika pakai separator */
      margin-top: 0 !important;
 }
+
+/* Contoh Media Query */
+@media (max-width: 768px) {
+    /* Aturan CSS khusus untuk layar <= 768px */
+    header#hero h1 {
+        font-size: 2rem; /* Kecilkan font di mobile */
+    }
+    #countdown h3 {
+         font-size: 1.5rem;
+    }
+}
+
+#love-gift {
+    background-color: #f8f9fa; /* Warna background section */
+}
+
+#love-gift .card {
+    border: none; /* Hapus border bawaan card jika pakai shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#love-gift .card:hover {
+    transform: translateY(-5px); /* Efek sedikit naik saat hover */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Shadow lebih jelas saat hover */
+} 
+
+#love-gift .card-body {
+    display: flex;
+    flex-direction: column; /* Susun elemen vertikal */
+    justify-content: space-between; /* Dorong tombol ke bawah jika tinggi card beda */
+}
+
+/* Tambahkan ini di bagian #love-gift styling */
+#love-gift .card-body img { /* Targetkan img di dalam card-body love gift */
+    max-height: 35px; /* Pertahankan batasan tinggi */
+    width: auto !important; /* Paksa lebar dihitung otomatis, !important jika sulit menimpa */
+    object-fit: contain; /* Pastikan gambar muat tanpa distorsi */
+    /* Jika Anda ingin menengahkan logo via CSS: */
+    /* display: block; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+#love-gift h4 {
+    color: #A0522D; /* Warna tema */
+    margin-bottom: 1.5rem !important;
+}
+
+#love-gift .btn-outline-dark:disabled {
+    /* Styling saat tombol 'Tersalin!' aktif */
+    background-color: #198754; /* Warna hijau sukses */
+    color: white;
+    border-color: #198754;
+    opacity: 1; /* Pastikan terlihat jelas */
+}
