@@ -69,8 +69,8 @@
    }
 
    #welcome-screen .welcome-photo { /* Atau gunakan selector yang sudah ada */
-    width: 20rem;
-    height: 20rem;
+    width: 25rem;
+    height: 25rem;
     object-fit: cover;
     /* Style lain jika ada */
    }
@@ -394,7 +394,7 @@
        header#hero h1 { font-size: 2rem; }
        header#hero h2 { font-size: 1.4rem; }
        #welcome-screen h2 { font-size: 2rem; }
-       #welcome-screen img.rounded-circle { width: 20rem; height: 20rem; }
+       #welcome-screen img.rounded-circle { width: 25rem; height: 25rem; }
        #countdown h3 { font-size: 1.3rem; }
        #countdown small { font-size: 0.7rem; }
        .font-esthetic { font-size: 1.6rem; }
