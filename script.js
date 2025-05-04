@@ -109,6 +109,20 @@ function openInvitation() {
 // 4. Tambahkan event listener ke tombol buka undangan
 openButton.addEventListener('click', openInvitation);
 
-
 // --- Sisa Kode JS (musik, modal, dll) ---
 console.log("Script.js loaded!");
+
+// --- Inisialisasi AOS ---
+// Pastikan ini dijalankan setelah DOM siap,
+// event listener 'DOMContentLoaded' adalah cara yang aman
+document.addEventListener('DOMContentLoaded', (event) => {
+    AOS.init({
+        duration: 800, // Durasi animasi dalam ms
+        once: true, // Animasi hanya terjadi sekali
+        offset: 50, // Jarak trigger animasi sebelum elemen terlihat (px)
+    });
+    console.log("AOS Initialized");
+});
+
+
+console.log("Script.js loaded!"); // Ini mungkin akan log sebelum DOM siap
