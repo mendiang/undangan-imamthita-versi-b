@@ -108,6 +108,13 @@
       /* Styling spesifik jika btn-light default tidak cukup */
       /* Contoh: padding: 0.75rem 1.5rem; */
    }
+
+   body.no-scroll {
+    overflow: hidden; /* Mencegah scrolling pada seluruh halaman */
+    /* Opsional: jika ada masalah di iOS/Mac dengan rubber band effect */
+    /* position: fixed; */
+    /* width: 100%; */
+    }
    
    
    /* ==========================================================================

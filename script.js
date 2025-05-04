@@ -8,8 +8,6 @@ function showImage(src) {
 // Anda bisa menambahkan kode JS lain di sini nanti
 console.log("Script.js loaded!"); // Pesan untuk cek apakah file JS termuat
 
-// --- Bagian Kode Sebelumnya (showImage, dll) ---
-
 // --- Logika Musik ---
 const audio = document.getElementById('background-music');
 const musicButton = document.getElementById('button-music');
@@ -64,6 +62,9 @@ const mainContent = document.querySelector('body > *:not(#welcome-screen):not(sc
 // Atau cara lebih mudah: beri ID pada elemen main content Anda, misal <main id="main-invitation">...</main>
 // const mainContent = document.getElementById('main-invitation');
 
+// --- TAMBAHKAN INI: Kunci scroll saat halaman load ---
+document.body.classList.add('no-scroll');
+// ----------------------------------------------------
 
 // 1. Ambil nama tamu dari URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -88,6 +89,10 @@ function openInvitation() {
         welcomeScreen.classList.add('d-none'); // Atau style.display = 'none'
     }, 800); // Sesuaikan durasi dengan transisi CSS
 
+    // --- TAMBAHKAN INI: Hapus class no-scroll agar bisa scroll lagi ---
+    document.body.classList.remove('no-scroll');
+    // ----------------------------------------------------------------
+
     // Coba mainkan musik SEKARANG (setelah interaksi user)
     if (!isPlaying) {
          audio.play().then(() => {
@@ -107,7 +112,9 @@ function openInvitation() {
 }
 
 // 4. Tambahkan event listener ke tombol buka undangan
-openButton.addEventListener('click', openInvitation);
+if(openButton) { // Check jika tombol ada sebelum menambah listener
+    openButton.addEventListener('click', openInvitation);
+}
 
 // --- Logika Countdown Timer ---
 
