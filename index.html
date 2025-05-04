@@ -33,7 +33,7 @@
              <div class="d-flex justify-content-center align-items-center vh-100 text-center">
                  <div> <!-- Container untuk konten -->
                      <h2 class="font-esthetic mb-3">The Wedding Of</h2>
-                     <img src="images/foto-utama.jpg" alt="background" class="img-fluid rounded-circle border border-3 border-light shadow mb-4 mx-auto" style="width: 10rem; height: 10rem; object-fit: cover;">
+                     <img src="images/foto-utama.jpeg" alt="background" class="img-fluid rounded-circle border border-3 border-light shadow mb-4 mx-auto" style="width: 10rem; height: 10rem; object-fit: cover;">
                      <h2 class="font-esthetic mb-4">Imam & Thita</h2>
     
                      <!-- Tempat Nama Tamu -->
@@ -54,7 +54,7 @@
     <header id="hero" class="container text-center">
         <h1 class="font-esthetic">Undangan Pernikahan</h1> <!-- Terapkan font esthetic -->
         <h2>Imam & Thita</h2>
-        <p>12 Juli 2024</p>
+        <p>12 Juli 2025</p>
         <img src="images/foto-utama.jpeg" alt="Foto Utama" class="img-fluid rounded-circle border border-3 border-light shadow my-4 mx-auto" style="width: 13rem; height: 13rem; object-fit: cover;"> <!-- Ganti nama file, tambah class Bootstrap, atur ukuran & object-fit -->
     </header>
 
@@ -75,7 +75,29 @@
     </section>
 
     <section id="tanggal-lokasi" class="container text-center py-5"> <!-- Padding atas-bawah -->
-        <h2 class="font-esthetic mb-5">Save The Date</h2> <!-- Font esthetic & margin bawah besar -->
+        <h2 class="font-esthetic mb-4">Save The Date</h2> <!-- Kurangi margin bawah sedikit -->
+
+        <!-- Countdown Timer Display -->
+        <div id="countdown" class="row justify-content-center mb-5 border rounded-pill shadow-sm py-3 mx-auto" style="max-width: 400px; background-color: rgba(255,255,255,0.8);">
+            <div class="col-3">
+                <h3 id="days" class="m-0">0</h3>
+                <small>Hari</small>
+            </div>
+            <div class="col-3">
+                <h3 id="hours" class="m-0">0</h3>
+                <small>Jam</small>
+            </div>
+            <div class="col-3">
+                <h3 id="minutes" class="m-0">0</h3>
+                <small>Menit</small>
+            </div>
+            <div class="col-3">
+                <h3 id="seconds" class="m-0">0</h3>
+                <small>Detik</small>
+            </div>
+        </div>
+        <!-- Akhir Countdown Timer Display -->
+
         <div class="row justify-content-center"><!-- Pusatkan kolom -->
             <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="100"> <!-- Kolom untuk Akad -->
                 <div class="shadow p-4 rounded"> <!-- Box shadow, padding, rounded -->

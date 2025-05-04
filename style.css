@@ -180,6 +180,7 @@ section#tanggal-lokasi h3 {
     font-size: 0.9rem;
     opacity: 0.9;
  }
+ 
  #guest-name-display {
     font-size: 1.5rem;
     /* Bisa tambahkan styling lain */
@@ -188,4 +189,16 @@ section#tanggal-lokasi h3 {
 /* Class untuk menyembunyikan elemen (dipakai JS nanti) */
 .d-none {
   display: none !important;
+}
+
+#countdown h3 {
+    font-size: 1.8rem; /* Sesuaikan ukuran angka */
+    font-weight: bold;
+    color: #A0522D; /* Sesuaikan warna */
+}
+
+#countdown small {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #555;
 }

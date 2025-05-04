@@ -126,3 +126,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 console.log("Script.js loaded!"); // Ini mungkin akan log sebelum DOM siap
+
+// --- Bagian Kode Sebelumnya ---
+
+// --- Logika Countdown Timer ---
+
+// 1. Tentukan Tanggal Tujuan (Ganti dengan tanggal & waktu acara Anda!)
+// Format: Bulan NamaHari, Tahun Jam:Menit:Detik
+// Contoh: January 1, 2025 09:00:00
+// Atau bisa juga YYYY-MM-DDTHH:MM:SS
+const countDownDate = new Date("July 12, 2025 08:00:00").getTime(); 
+
+// 2. Dapatkan elemen untuk menampilkan waktu
+const daysElement = document.getElementById("days");
+const hoursElement = document.getElementById("hours");
+const minutesElement = document.getElementById("minutes");
+const secondsElement = document.getElementById("seconds");
+const countdownElement = document.getElementById("countdown"); // Untuk menyembunyikan jika sudah lewat
+
+// 3. Update countdown setiap 1 detik
+const countdownInterval = setInterval(function() {
+
+    // Dapatkan tanggal dan waktu saat ini
+    const now = new Date().getTime();
+
+    // Hitung selisih waktu
+    const distance = countDownDate - now;
+
+    // Kalkulasi hari, jam, menit, detik
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Tampilkan hasilnya di elemen
+    // Tambahkan '0' di depan jika angka < 10 (opsional)
+    daysElement.textContent = days < 0 ? 0 : days; // Jangan tampilkan negatif
+    hoursElement.textContent = hours < 0 ? '00' : String(hours).padStart(2, '0');
+    minutesElement.textContent = minutes < 0 ? '00' : String(minutes).padStart(2, '0');
+    secondsElement.textContent = seconds < 0 ? '00' : String(seconds).padStart(2, '0');
+
+    // Jika waktu countdown habis
+    if (distance < 0) {
+        clearInterval(countdownInterval); // Hentikan interval
+        countdownElement.innerHTML = "<p class='m-0 fw-bold'>Acara Telah Dimulai!</p>"; // Tampilkan pesan
+        // Atau sembunyikan saja: countdownElement.style.display = 'none';
+    }
+
+}, 1000); // Update setiap 1000ms = 1 detik
+
+// --- Sisa Kode JS ---
+// --- Inisialisasi AOS (dalam DOMContentLoaded) ---
+// ...
+console.log("Script.js loaded!");
