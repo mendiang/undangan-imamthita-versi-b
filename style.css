@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Sacramento&display=swap');
 
 body {
-    font-family: 'Josefin Sans', sans-serif; 
+    font-family: 'Montserrat', sans-serif; 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,8 +12,8 @@ body {
 
 /* Tambahkan kelas untuk font estetik */
 .font-esthetic {
-    font-family: 'Sacramento', cursive;
-    font-weight: normal; /* Sacramento biasanya tidak perlu bold */
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal; 
 }
 
 header#hero {
@@ -169,6 +169,14 @@ section#tanggal-lokasi h3 {
     transition: opacity 0.8s ease-out; /* Efek fade out nanti */
     color: white; /* Sesuaikan warna teks */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+#welcome-screen {
+    background-color: #D2B48C; /* Warna dasar jika gambar gagal load */
+    background-image: url('images/textures/paper-texture.jpg'); /* Ganti path gambar */
+    background-blend-mode: overlay; /* Coba mode lain seperti multiply, screen, overlay */
+    opacity: 1; /* Sedikit kurangi opacity gambar background */
+    /* ... properti background lain (size, position) ... */
 }
 
 /* Styling khusus untuk elemen di dalam welcome screen */
