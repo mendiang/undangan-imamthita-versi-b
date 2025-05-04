@@ -79,16 +79,31 @@
         <h2 class="text-center font-esthetic mb-5">Momen Bahagia</h2>
         <div class="row justify-content-center g-3"> <!-- g-3 untuk gutter/jarak antar kolom -->
             <div class="col-md-4 col-6"> <!-- 3 kolom di desktop, 2 di mobile -->
-                <img src="images/gallery1.jpeg" alt="Galeri 1" class="img-fluid rounded shadow-sm">
+                <img src="images/gallery1.jpeg" alt="Galeri 1" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
             </div>
             <div class="col-md-4 col-6"></div>
-                <img src="images/gallery2.jpeg" alt="Galeri 2" class="img-fluid rounded shadow-sm">
+                <img src="images/gallery2.jpeg" alt="Galeri 2" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
             </div>
             <div class="col-md-4 col-6"></div>
-                <img src="images/gallery3.jpeg" alt="Galeri 3" class="img-fluid rounded shadow-sm"> <!-- Tambah jika perlu -->
+                <img src="images/gallery3.jpeg" alt="Galeri 3" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> 
+            </div>
+            <div class="col-md-4 col-6"></div>
+                <img src="images/gallery4.jpeg" alt="Galeri 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> <!-- Tambah jika perlu -->
             </div><!-- Tambahkan div kolom lagi sesuai jumlah foto -->
         </div><!-- Untuk Carousel seperti contoh, perlu struktur HTML Carousel Bootstrap -->
     </section>
+
+     <!-- Modal untuk Galeri -->
+   <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Dialog di tengah & besar -->
+      <div class="modal-content bg-transparent border-0"> <!-- Konten transparan, tanpa border -->
+        <div class="modal-body p-0">
+          <button type="button" class="btn-close position-absolute top-0 end-0 p-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1056; background-color: white;"></button> <!-- Tombol close -->
+          <img src="" class="img-fluid rounded" id="modalImage" alt="Gambar Galeri"> <!-- Tempat gambar modal -->
+        </div>
+      </div>
+    </div>
+  </div>
 
     <footer class="container-fluid text-center py-4"> <!-- Lebar penuh, padding -->
         <p class="mb-1">Terima kasih atas doa restunya.</p>
