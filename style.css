@@ -124,26 +124,68 @@ a:hover {
 section#tanggal-lokasi {
     background-color: #fff; /* Atau warna tema lain */
 }
+
 section#tanggal-lokasi .shadow { /* Styling untuk box */
      background-color: #f8f9fa; /* Warna sedikit beda */
      border: 1px solid #eee;
 }
+
 section#tanggal-lokasi h3 {
      font-size: 2rem;
      margin-bottom: 1.5rem;
      color: #A0522D; /* Contoh warna tema - sesuaikan */
 }
+
  section#tanggal-lokasi p {
      margin-bottom: 0.8rem;
      font-size: 1rem;
 }
+
  /* Styling untuk tombol lihat peta (override Bootstrap jika perlu) */
  .btn-outline-dark {
      /* Ganti warna border/hover jika mau */
      border-color: #A0522D;
      color: #A0522D;
- }
+}
+
  .btn-outline-dark:hover {
      background-color: #A0522D;
      color: white;
+}
+
+/* Styling untuk halaman loading / welcome screen */
+.loading-page {
+    position: fixed; /* Tetap di layar */
+    inset: 0; /* Penuhi seluruh layar (top, right, bottom, left = 0) */
+    width: 100%;
+    height: 100%;
+    background-color: #D2B48C; /* Sesuaikan warna background */
+    /* Atau background image */
+    /* background-image: url('images/background-welcome.jpg'); */
+    background-size: cover;
+    background-position: center;
+    z-index: 1056; /* Tampil di atas konten lain */
+    opacity: 1; /* Mulai dengan terlihat */
+    transition: opacity 0.8s ease-out; /* Efek fade out nanti */
+    color: white; /* Sesuaikan warna teks */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* Styling khusus untuk elemen di dalam welcome screen */
+#welcome-screen h2 {
+    font-size: 2.2rem;
+}
+
+ #guest-name-container p {
+    font-size: 0.9rem;
+    opacity: 0.9;
  }
+ #guest-name-display {
+    font-size: 1.5rem;
+    /* Bisa tambahkan styling lain */
+ }
+
+/* Class untuk menyembunyikan elemen (dipakai JS nanti) */
+.d-none {
+  display: none !important;
+}

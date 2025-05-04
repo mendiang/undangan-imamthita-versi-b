@@ -54,3 +54,61 @@ musicButton.addEventListener('click', toggleMusic);
 // Untuk sementara, musik HANYA akan play jika user klik tombol musiknya.
 
 console.log("Script.js loaded!");
+
+// --- Logika Welcome Screen ---
+const welcomeScreen = document.getElementById('welcome-screen');
+const openButton = document.getElementById('open-invitation');
+const guestNameDisplay = document.getElementById('guest-name-display');
+const guestNameContainer = document.getElementById('guest-name-container'); // Opsional: sembunyikan jika tak ada nama
+const mainContent = document.querySelector('body > *:not(#welcome-screen):not(script):not(audio):not(div[style*="position: fixed"])'); // Pilih konten utama (perlu disesuaikan jika struktur body berubah)
+// Atau cara lebih mudah: beri ID pada elemen main content Anda, misal <main id="main-invitation">...</main>
+// const mainContent = document.getElementById('main-invitation');
+
+
+// 1. Ambil nama tamu dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const guestName = urlParams.get('to'); // Ambil nilai dari ?to=...
+
+// 2. Tampilkan nama tamu jika ada
+if (guestName) {
+    // Ganti teks placeholder dengan nama tamu yang sudah di-decode dan dibersihkan sedikit
+    guestNameDisplay.textContent = decodeURIComponent(guestName).replace(/\+/g, ' ');
+    guestNameContainer.style.display = 'block'; // Tampilkan kontainer nama
+} else {
+    // Jika tidak ada parameter 'to', sembunyikan seluruh bagian nama tamu
+    guestNameContainer.style.display = 'none';
+}
+
+// 3. Fungsi untuk membuka undangan
+function openInvitation() {
+    // Sembunyikan welcome screen dengan efek fade out
+    welcomeScreen.style.opacity = '0';
+    // Tunggu animasi selesai baru benar-benar hilangkan
+    setTimeout(() => {
+        welcomeScreen.classList.add('d-none'); // Atau style.display = 'none'
+    }, 800); // Sesuaikan durasi dengan transisi CSS
+
+    // Coba mainkan musik SEKARANG (setelah interaksi user)
+    if (!isPlaying) {
+         audio.play().then(() => {
+             isPlaying = true;
+             musicIcon.classList.remove('fa-play');
+             musicIcon.classList.add('fa-pause');
+             musicButton.setAttribute('aria-label', 'Pause Music');
+         }).catch(error => {
+             console.error("Musik gagal play setelah buka undangan:", error);
+             isPlaying = false; // Tetap false jika gagal
+         });
+     }
+
+    // Optional: Scroll ke bagian atas konten utama
+    // mainContent.scrollIntoView({ behavior: 'smooth' });
+     window.scrollTo(0, 0); // Scroll ke paling atas
+}
+
+// 4. Tambahkan event listener ke tombol buka undangan
+openButton.addEventListener('click', openInvitation);
+
+
+// --- Sisa Kode JS (musik, modal, dll) ---
+console.log("Script.js loaded!");
