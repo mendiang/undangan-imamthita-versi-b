@@ -232,6 +232,25 @@ section {
     }
 }
 
+/* Contoh untuk layar sangat kecil */
+@media (max-width: 576px) {
+    header#hero h1 {
+        font-size: 1.8rem; /* Perkecil lagi font heading utama */
+    }
+    #countdown h3 {
+        font-size: 1.2rem; /* Perkecil font countdown */
+    }
+    .font-esthetic {
+         font-size: 1.5rem; /* Sesuaikan ukuran font estetik global di mobile */
+    }
+    /* Aturan lain untuk mobile */
+}
+
+/* Contoh untuk tablet */
+@media (min-width: 768px) and (max-width: 991.98px) {
+     /* Aturan CSS khusus untuk tablet */
+}
+
 #love-gift {
     background-color: #f8f9fa; /* Warna background section */
 }
