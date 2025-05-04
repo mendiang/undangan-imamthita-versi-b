@@ -69,8 +69,8 @@
    }
 
    #welcome-screen .welcome-photo { /* Atau gunakan selector yang sudah ada */
-    width: 20rem;
-    height: 20rem;
+    width: 30rem;
+    height: 30rem;
     object-fit: cover;
     /* Style lain jika ada */
    }
