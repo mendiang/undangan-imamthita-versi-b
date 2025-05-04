@@ -180,7 +180,7 @@ section#tanggal-lokasi h3 {
     font-size: 0.9rem;
     opacity: 0.9;
  }
- 
+
  #guest-name-display {
     font-size: 1.5rem;
     /* Bisa tambahkan styling lain */
@@ -201,4 +201,22 @@ section#tanggal-lokasi h3 {
     font-size: 0.8rem;
     text-transform: uppercase;
     color: #555;
+}
+
+/* style.css */
+.section-separator {
+    display: block; /* Agar tidak ada spasi bawah */
+    width: 100%;
+    height: auto; /* Atau atur tinggi spesifik */
+    margin-bottom: -5px; /* Tarik ke atas sedikit jika ada celah */
+    /* background-color: #D2B48C; /* Warna background section di atasnya */ */
+}
+
+.section-separator path {
+   /* Fill diatur di HTML atau di sini jika mau ganti via CSS */
+}
+
+section {
+     /* Pastikan tidak ada margin-top jika pakai separator */
+     margin-top: 0 !important;
 }
