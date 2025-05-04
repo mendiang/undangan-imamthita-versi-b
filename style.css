@@ -69,8 +69,8 @@
    }
 
    #welcome-screen .welcome-photo { /* Atau gunakan selector yang sudah ada */
-    width: 30rem;
-    height: 30rem;
+    width: 20rem;
+    height: 20rem;
     object-fit: cover;
     /* Style lain jika ada */
    }
@@ -93,8 +93,8 @@
    }
    
    #welcome-screen img.rounded-circle {
-       width: 16rem; /* Ukuran default gambar tengah */
-       height: 16rem;
+       width: 20rem; /* Ukuran default gambar tengah */
+       height: 20rem;
        object-fit: cover;
        border: none; /*3px solid rgba(255, 255, 255, 0.8); /* Border sedikit transparan */
        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1), /* Shadow lembut di dalam */
