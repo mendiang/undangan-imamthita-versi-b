@@ -394,7 +394,7 @@
        header#hero h1 { font-size: 2rem; }
        header#hero h2 { font-size: 1.4rem; }
        #welcome-screen h2 { font-size: 2rem; }
-       #welcome-screen img.rounded-circle { width: 12rem; height: 12rem; }
+       #welcome-screen img.rounded-circle { width: 16rem; height: 16rem; }
        #countdown h3 { font-size: 1.3rem; }
        #countdown small { font-size: 0.7rem; }
        .font-esthetic { font-size: 1.6rem; }
