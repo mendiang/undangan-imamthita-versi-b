@@ -1,315 +1,387 @@
-/* Tambahkan ini di paling atas style.css */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Sacramento&display=swap');
+/* ==========================================================================
+   1. Google Fonts Import & Reset
+   ========================================================================== */
 
-body {
-    font-family: 'Montserrat', sans-serif; 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f4f4f4; /* Warna latar belakang lembut */
-    color: #333; /* Warna teks dasar */
-}
+/* Pastikan link font ada di HTML <head> untuk performa lebih baik,
+   tapi jika tetap menggunakan @import, pastikan lengkap: */
+   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
 
-/* Tambahkan kelas untuk font estetik */
-.font-esthetic {
-    font-family: 'Great Vibes', cursive;
-    font-weight: normal; 
-}
-
-header#hero {
-    /* background-color: #D2B48C; /* Contoh warna tema - sesuaikan */
-    background-image: url('images/background-utama.jpeg'); /* Ganti dg gambar background jika ada */
-    background-size: cover;
-    background-position: center;
-    color: #fff; /* Warna teks putih jika background gelap */
-    padding: 60px 20px;
-    margin-bottom: 0;
-    position: relative; /* Untuk overlay jika perlu */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Bayangan teks agar terbaca */
-}
-
-/* Jika pakai background image, mungkin perlu overlay gelap */
-/* header#hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Overlay gelap transparan */
-    /* z-index: 1; */
-/* } */
-
-/* Pastikan konten di atas overlay */
-/* header#hero > * {
-    position: relative;
-    z-index: 2;
-} */
-
-header#hero h1 {
-    font-size: 2.5rem; /* Sesuaikan ukuran */
-    margin-bottom: 0.5rem;
-}
-header#hero h2 {
-    font-size: 1.8rem; /* Sesuaikan ukuran */
-    margin-bottom: 1rem;
-}
-header#hero p {
-    font-size: 1.1rem; /* Sesuaikan ukuran */
-    margin-bottom: 1.5rem;
-}
-
-header#hero img {
-    border-radius: 50%; /* Membuat gambar utama jadi bulat */
-    border: 5px solid white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    margin-top: 20px;
-}
-
-section {
-    padding: 20px;
-    margin-bottom: 30px;
-    background-color: white; /* Latar belakang putih untuk tiap bagian */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Atur ulang styling mempelai dengan Bootstrap grid */
-section#mempelai .row {
-    align-items: center; /* Pusatkan vertikal jika perlu */
-}
-
-section#mempelai img {
-    border-radius: 50%;
-    border: 3px solid #eee;
-    margin-top: 10px;
-    max-width: 150px; /* Batasi ukuran maks gambar */
-    height: auto; /* Jaga rasio aspek */
-}
-
-section#mempelai div {
-    margin-bottom: 20px; /* Jarak antar info mempelai */
-}
-
-section#galeri {
-    background-color: #f4f4f4; /* Background beda */
-}
-
-section#galeri img {
-    /* Tidak perlu styling khusus jika sudah pakai class Bootstrap */
-    cursor: pointer; /* Tanda bisa diklik (untuk modal nanti) */
-    transition: transform 0.3s ease; /* Efek hover nanti */
-}
-
-section#galeri img:hover {
-    transform: scale(1.05); /* Sedikit membesar saat hover */
-}
-
-footer {
-    /* margin-top: 40px; Dihapus jika tidak perlu */
-    padding: 30px 20px;
-    background-color: #333; /* Warna gelap */
-    color: rgba(255, 255, 255, 0.8); /* Putih agak transparan */
-    font-size: 0.9em;
-}
-
-a {
-    color: #007bff; /* Warna link biru */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-section#tanggal-lokasi {
-    background-color: #fff; /* Atau warna tema lain */
-}
-
-section#tanggal-lokasi .shadow { /* Styling untuk box */
-     background-color: #f8f9fa; /* Warna sedikit beda */
-     border: 1px solid #eee;
-}
-
-section#tanggal-lokasi h3 {
-     font-size: 2rem;
-     margin-bottom: 1.5rem;
-     color: #A0522D; /* Contoh warna tema - sesuaikan */
-}
-
- section#tanggal-lokasi p {
-     margin-bottom: 0.8rem;
-     font-size: 1rem;
-}
-
- /* Styling untuk tombol lihat peta (override Bootstrap jika perlu) */
- .btn-outline-dark {
-     /* Ganti warna border/hover jika mau */
-     border-color: #A0522D;
-     color: #A0522D;
-}
-
- .btn-outline-dark:hover {
-     background-color: #A0522D;
-     color: white;
-}
-
-/* Styling untuk halaman loading / welcome screen */
-.loading-page {
-    position: fixed; /* Tetap di layar */
-    inset: 0; /* Penuhi seluruh layar (top, right, bottom, left = 0) */
-    width: 100%;
-    height: 100%;
-    background-color: #D2B48C; /* Sesuaikan warna background */
-    /* Atau background image */
-    /* background-image: url('images/background-welcome.jpg'); */
-    background-size: cover;
-    background-position: center;
-    z-index: 1056; /* Tampil di atas konten lain */
-    opacity: 1; /* Mulai dengan terlihat */
-    transition: opacity 0.8s ease-out; /* Efek fade out nanti */
-    color: white; /* Sesuaikan warna teks */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-}
-
-#welcome-screen {
-    background-color: #D2B48C; /* Warna dasar jika gambar gagal load */
-    background-image: url('images/textures/paper-texture.jpg'); /* Ganti path gambar */
-    background-blend-mode: overlay; /* Coba mode lain seperti multiply, screen, overlay */
-    opacity: 1; /* Sedikit kurangi opacity gambar background */
-    /* ... properti background lain (size, position) ... */
-}
-
-/* Styling khusus untuk elemen di dalam welcome screen */
-#welcome-screen h2 {
-    font-size: 2.2rem;
-}
-
-/* style.css */
-
-/* Cari selector yang relevan, contoh: */
-#welcome-screen .font-esthetic { /* Atau #welcome-screen h2, dll. */
-    color: #8A7F8D; /* GANTI dengan kode warna yang Anda dapatkan */
-    /* Properti font-family, dll. biarkan */
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6); /* Contoh shadow terang */
-    /* atau */
-    /* text-shadow: none; */ /* Jika ingin tanpa shadow */
-}
-
- #guest-name-container p {
-    font-size: 0.9rem;
-    opacity: 0.9;
- }
-
- #guest-name-display {
-    font-size: 1.5rem;
-    /* Bisa tambahkan styling lain */
- }
-
-/* Class untuk menyembunyikan elemen (dipakai JS nanti) */
-.d-none {
-  display: none !important;
-}
-
-#countdown h3 {
-    font-size: 1.8rem; /* Sesuaikan ukuran angka */
-    font-weight: bold;
-    color: #A0522D; /* Sesuaikan warna */
-}
-
-#countdown small {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    color: #555;
-}
-
-/* style.css */
-.section-separator {
-    display: block; /* Agar tidak ada spasi bawah */
-    width: 100%;
-    height: auto; /* Atau atur tinggi spesifik */
-    margin-bottom: -5px; /* Tarik ke atas sedikit jika ada celah */
-    /* background-color: #D2B48C; /* Warna background section di atasnya */ */
-}
-
-.section-separator path {
-   /* Fill diatur di HTML atau di sini jika mau ganti via CSS */
-}
-
-section {
-     /* Pastikan tidak ada margin-top jika pakai separator */
-     margin-top: 0 !important;
-}
-
-/* Contoh Media Query */
-@media (max-width: 768px) {
-    /* Aturan CSS khusus untuk layar <= 768px */
-    header#hero h1 {
-        font-size: 2rem; /* Kecilkan font di mobile */
-    }
-    #countdown h3 {
-         font-size: 1.5rem;
-    }
-}
-
-/* Contoh untuk layar sangat kecil */
-@media (max-width: 576px) {
-    header#hero h1 {
-        font-size: 1.8rem; /* Perkecil lagi font heading utama */
-    }
-    #countdown h3 {
-        font-size: 1.2rem; /* Perkecil font countdown */
-    }
-    .font-esthetic {
-         font-size: 1.5rem; /* Sesuaikan ukuran font estetik global di mobile */
-    }
-    /* Aturan lain untuk mobile */
-}
-
-/* Contoh untuk tablet */
-@media (min-width: 768px) and (max-width: 991.98px) {
-     /* Aturan CSS khusus untuk tablet */
-}
-
-#love-gift {
-    background-color: #f8f9fa; /* Warna background section */
-}
-
-#love-gift .card {
-    border: none; /* Hapus border bawaan card jika pakai shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#love-gift .card:hover {
-    transform: translateY(-5px); /* Efek sedikit naik saat hover */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Shadow lebih jelas saat hover */
-} 
-
-#love-gift .card-body {
-    display: flex;
-    flex-direction: column; /* Susun elemen vertikal */
-    justify-content: space-between; /* Dorong tombol ke bawah jika tinggi card beda */
-}
-
-/* Tambahkan ini di bagian #love-gift styling */
-#love-gift .card-body img { /* Targetkan img di dalam card-body love gift */
-    max-height: 35px; /* Pertahankan batasan tinggi */
-    width: auto !important; /* Paksa lebar dihitung otomatis, !important jika sulit menimpa */
-    object-fit: contain; /* Pastikan gambar muat tanpa distorsi */
-    /* Jika Anda ingin menengahkan logo via CSS: */
-    /* display: block; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-}
-
-#love-gift h4 {
-    color: #A0522D; /* Warna tema */
-    margin-bottom: 1.5rem !important;
-}
-
-#love-gift .btn-outline-dark:disabled {
-    /* Styling saat tombol 'Tersalin!' aktif */
-    background-color: #198754; /* Warna hijau sukses */
-    color: white;
-    border-color: #198754;
-    opacity: 1; /* Pastikan terlihat jelas */
-}
+   /* Basic Reset & Body Styling */
+   body {
+       font-family: 'Montserrat', sans-serif; /* Font utama */
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       background-color: #f4f4f4; /* Warna latar default */
+       color: #333; /* Warna teks default */
+       line-height: 1.6; /* Jarak antar baris default */
+   }
+   
+   /* ==========================================================================
+      2. Typography & Utility Classes
+      ========================================================================== */
+   
+   .font-esthetic {
+       font-family: 'Great Vibes', cursive; /* Font dekoratif */
+       font-weight: normal;
+       /* Ukuran spesifik mungkin lebih baik diatur per elemen (h1, h2) */
+   }
+   
+   /* Utility untuk menyembunyikan elemen (via JS) */
+   .d-none {
+       display: none !important;
+   }
+   
+   a {
+       color: #007bff; /* Warna link default */
+       text-decoration: none;
+   }
+   
+   a:hover {
+       text-decoration: underline;
+   }
+   
+   /* ==========================================================================
+      3. Welcome Screen / Loading Page
+      ========================================================================== */
+   
+   .loading-page { /* Base styling untuk layar penuh */
+       position: fixed;
+       inset: 0;
+       width: 100%;
+       height: 100%;
+       z-index: 1056;
+       opacity: 1;
+       transition: opacity 0.8s ease-out;
+       display: flex; /* Untuk memusatkan konten */
+       justify-content: center;
+       align-items: center;
+       text-align: center;
+   }
+   
+   #welcome-screen { /* Styling spesifik untuk welcome screen */
+       background-color: #D2B48C; /* Warna dasar */
+       background-image: url('images/textures/paper-texture.jpg'); /* Tekstur */
+       background-blend-mode: overlay; /* Blend mode */
+       background-size: cover;
+       background-position: center;
+       color: white; /* Warna teks utama welcome screen */
+   }
+   
+   #welcome-screen .font-esthetic { /* Styling font estetik di welcome */
+       color: #8A7F8D; /* Warna dari baju mempelai wanita */
+       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6); /* Shadow terang */
+   }
+   
+   #welcome-screen h2 { /* Termasuk yang .font-esthetic */
+       font-size: 2.2rem;
+       margin-bottom: 1rem; /* Jarak bawah default H2 welcome */
+   }
+   
+   #welcome-screen img.rounded-circle {
+       width: 16rem; /* Ukuran default gambar tengah */
+       height: 16rem;
+       object-fit: cover;
+       border: 3px solid rgba(255, 255, 255, 0.8); /* Border sedikit transparan */
+       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+       margin-top: 1.5rem;
+       margin-bottom: 1.5rem;
+   }
+   
+   #guest-name-container {
+        margin-bottom: 1.5rem;
+   }
+   
+   #guest-name-container p {
+       font-size: 0.9rem;
+       opacity: 0.9;
+       margin-bottom: 0.25rem;
+   }
+   
+   #guest-name-display {
+       font-size: 1.5rem;
+       font-weight: bold;
+   }
+   
+   /* Tombol Buka Undangan (jika perlu styling khusus) */
+   #open-invitation {
+      /* Styling spesifik jika btn-light default tidak cukup */
+      /* Contoh: padding: 0.75rem 1.5rem; */
+   }
+   
+   
+   /* ==========================================================================
+      4. Header / Hero Section (Setelah Welcome Screen)
+      ========================================================================== */
+   
+   header#hero {
+       background-image: url('images/background-utama.jpeg');
+       background-size: cover;
+       background-position: center;
+       color: #fff;
+       padding: 80px 20px 60px 20px; /* Sesuaikan padding */
+       margin-bottom: 0; /* Hapus jika pakai separator */
+       position: relative;
+       text-align: center; /* Pastikan rata tengah */
+   }
+   
+   /* Overlay (jika diperlukan, uncomment dan sesuaikan) */
+   /* header#hero::before { ... } */
+   /* header#hero > * { ... } */
+   
+   header#hero h1,
+   header#hero h2,
+   header#hero p {
+       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Shadow agar terbaca */
+       margin-left: auto; /* Bantu tengahkan jika perlu */
+       margin-right: auto;
+   }
+   
+   header#hero h1 { /* Umumnya akan pakai .font-esthetic */
+       font-size: 2.8rem; /* Sesuaikan */
+       margin-bottom: 0.5rem;
+   }
+   header#hero h2 {
+       font-size: 1.8rem;
+       margin-bottom: 1rem;
+   }
+   header#hero p { /* Untuk tanggal */
+       font-size: 1.1rem;
+       margin-bottom: 1.5rem;
+       opacity: 0.9;
+   }
+   
+   /* Tombol Simpan Tanggal (Override Bootstrap jika perlu) */
+   header#hero .btn-outline-light {
+       /* Contoh override jika perlu */
+       /* border-width: 2px; */
+   }
+   
+   
+   /* ==========================================================================
+      5. General Section Styling
+      ========================================================================== */
+   
+   section {
+       padding: 40px 20px; /* Padding standar section */
+       margin-bottom: 0; /* Hapus jika pakai separator */
+       margin-top: 0 !important; /* Pastikan tidak ada margin atas jika pakai separator */
+       background-color: white;
+       /* Hapus box-shadow jika ingin tampilan lebih flat atau atur per section */
+       /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+   }
+   
+   /* Atur background per section jika berbeda */
+   section#mempelai,
+   section#tanggal-lokasi {
+       background-color: #fff;
+   }
+   section#galeri,
+   #love-gift {
+       background-color: #f8f9fa; /* Warna sedikit beda */
+   }
+   
+   /* ==========================================================================
+      6. Section Specific Styles
+      ========================================================================== */
+   
+   /* --- Section Mempelai --- */
+   section#mempelai .row {
+       align-items: center;
+   }
+   
+   section#mempelai img.rounded-circle { /* Lebih spesifik */
+       border: 3px solid #eee;
+       max-width: 150px;
+       height: auto;
+       margin-top: 10px;
+       margin-bottom: 1rem; /* Jarak bawah */
+   }
+   
+   section#mempelai h3 { /* Nama mempelai */
+        /* Mungkin pakai .font-esthetic */
+        font-size: 2rem; /* Sesuaikan */
+        margin-bottom: 0.5rem;
+   }
+   
+   section#mempelai p { /* Info orang tua */
+       font-size: 0.9rem;
+       color: #555;
+   }
+   
+   /* --- Section Tanggal & Lokasi --- */
+   #countdown { /* Styling box countdown */
+       border: 1px solid #eee;
+       background-color: rgba(255, 255, 255, 0.8);
+       max-width: 400px; /* Batasi lebar */
+   }
+   #countdown h3 {
+       font-size: 1.8rem;
+       font-weight: bold;
+       color: #A0522D; /* Warna tema */
+       margin: 0;
+   }
+   #countdown small {
+       font-size: 0.75rem; /* Sedikit lebih kecil */
+       text-transform: uppercase;
+       color: #555;
+   }
+   
+   #tanggal-lokasi .shadow { /* Styling box Akad/Resepsi/Lokasi */
+        background-color: #f8f9fa;
+        border: 1px solid #eee;
+        margin-bottom: 1.5rem; /* Jarak antar box */
+   }
+   #tanggal-lokasi h3 { /* Judul Akad/Resepsi/Lokasi */
+        font-size: 2rem; /* Mungkin pakai .font-esthetic */
+        margin-bottom: 1.5rem;
+        color: #A0522D;
+   }
+   #tanggal-lokasi p {
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+   }
+   /* Tombol Lihat Peta (spesifik jika beda dari default .btn-outline-dark) */
+   #tanggal-lokasi .btn-outline-dark {
+        border-color: #A0522D;
+        color: #A0522D;
+   }
+   #tanggal-lokasi .btn-outline-dark:hover {
+        background-color: #A0522D;
+        color: white;
+   }
+   
+   /* --- Section Galeri --- */
+   #galeri h2 { /* Judul Galeri */
+       margin-bottom: 3rem !important; /* Jarak lebih besar ke gambar */
+   }
+   #galeri img {
+       border-radius: 0.25rem; /* Bootstrap's default rounded */
+       box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* shadow-sm */
+       cursor: pointer;
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   #galeri img:hover {
+       transform: scale(1.05);
+       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* shadow */
+   }
+   
+   /* --- Section Love Gift --- */
+   #love-gift h2 { /* Judul Love Gift */
+        margin-bottom: 1.5rem !important;
+   }
+   #love-gift .lead { /* Paragraf pembuka */
+       font-size: 1rem;
+       max-width: 600px;
+       margin-left: auto;
+       margin-right: auto;
+       margin-bottom: 3rem !important;
+   }
+   #love-gift .card {
+       border: none;
+       height: 100%; /* Agar tinggi card sama rata */
+       box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* shadow-sm */
+       transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   #love-gift .card:hover {
+       transform: translateY(-5px);
+       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+   }
+   #love-gift .card-body {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       padding: 1.5rem; /* Padding lebih besar di card */
+   }
+   #love-gift .card-body img { /* Logo Bank */
+       max-height: 35px;
+       width: auto; /* Otomatis lebar */
+       object-fit: contain;
+       margin-bottom: 1rem; /* Jarak bawah logo */
+        display: block; /* Untuk margin auto jika perlu tengahkan */
+        margin-left: auto;
+        margin-right: auto;
+   }
+   #love-gift h4 { /* Judul dalam card */
+       color: #A0522D;
+       margin-bottom: 1.5rem !important;
+       font-size: 1.8rem; /* Sesuaikan */
+   }
+   #love-gift p {
+       font-size: 0.95rem; /* Ukuran teks info */
+   }
+   #love-gift .fs-5 { /* Ukuran No Rekening */
+       font-size: 1.25rem !important;
+   }
+   #love-gift button {
+       margin-top: 1rem; /* Jarak tombol dari teks di atasnya */
+   }
+   #love-gift .btn-outline-dark:disabled {
+       background-color: #198754;
+       color: white;
+       border-color: #198754;
+       opacity: 1;
+   }
+   
+   /* ==========================================================================
+      7. Footer
+      ========================================================================== */
+   
+   footer {
+       padding: 30px 20px;
+       background-color: #333;
+       color: rgba(255, 255, 255, 0.8);
+       font-size: 0.9em;
+       text-align: center;
+   }
+   
+   /* ==========================================================================
+      8. Separators (Jika Digunakan)
+      ========================================================================== */
+   
+   .section-separator {
+       display: block;
+       width: 100%;
+       height: auto;
+       margin-bottom: -5px; /* Sesuaikan jika ada celah */
+       /* Atur warna background section di atasnya jika perlu */
+   }
+   
+   .section-separator path {
+      /* fill diatur di HTML atau di sini */
+   }
+   
+   /* ==========================================================================
+      9. Media Queries (Responsiveness)
+      ========================================================================== */
+   
+   /* Tablet */
+   @media (min-width: 768px) and (max-width: 991.98px) {
+        /* Aturan CSS khusus untuk tablet */
+        header#hero h1 { font-size: 2.5rem; }
+        header#hero h2 { font-size: 1.6rem; }
+   }
+   
+   /* Mobile Landscape & Tablet Kecil */
+   @media (max-width: 767.98px) {
+       header#hero h1 { font-size: 2.2rem; }
+       header#hero h2 { font-size: 1.5rem; }
+       section#mempelai img.rounded-circle { max-width: 120px; }
+       #countdown h3 { font-size: 1.5rem; }
+       .font-esthetic { font-size: 1.8rem; } /* Ukuran estetik global mobile */
+       #love-gift .card { margin-bottom: 1.5rem; } /* Jarak card di mobile */
+   }
+   
+   /* Mobile Portrait */
+   @media (max-width: 575.98px) {
+       header#hero h1 { font-size: 2rem; }
+       header#hero h2 { font-size: 1.4rem; }
+       #welcome-screen h2 { font-size: 2rem; }
+       #welcome-screen img.rounded-circle { width: 12rem; height: 12rem; }
+       #countdown h3 { font-size: 1.3rem; }
+       #countdown small { font-size: 0.7rem; }
+       .font-esthetic { font-size: 1.6rem; }
+       section { padding: 30px 15px; } /* Kurangi padding section di mobile */
+       #love-gift .lead { font-size: 0.95rem; margin-bottom: 2rem !important; }
+       #love-gift h4 { font-size: 1.6rem; }
+   }
