@@ -80,6 +80,27 @@ if (guestName) {
     guestNameContainer.style.display = 'none';
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.slideshow-container .slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // Ganti gambar setiap 5 detik
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    if (slides.length > 1) {
+        slides[0].classList.add('active'); // Tampilkan slide pertama
+        setInterval(nextSlide, slideInterval);
+    } else if (slides.length === 1) {
+        slides[0].classList.add('active'); // Jika hanya 1 gambar, tampilkan saja
+    }
+
+    // ... (kode untuk tombol open-invitation dan musik tetap ada) ...
+});
+
 // 3. Fungsi untuk membuka undangan
 function openInvitation() {
     // Sembunyikan welcome screen dengan efek fade out

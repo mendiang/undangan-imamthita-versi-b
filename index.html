@@ -33,23 +33,27 @@
 <body>
 
         <!-- Welcome Screen -->
-    <div id="welcome-screen" class="loading-page"> <!-- Pakai class loading-page untuk styling awal -->
-        <div class="d-flex justify-content-center align-items-center vh-100 text-center">
-            <div> <!-- Container untuk konten -->
-                <h2 class="font-esthetic mb-3">The Wedding of</h2>
-                <img src="assets/images/foto-utama.jpeg" alt="background" class="img-fluid rounded-circle shadow mb-4 mx-auto welcome-photo">
-                <h2 class="font-esthetic mb-4">Imam & Thita</h2>
-    
-                <!-- Tempat Nama Tamu -->
-                <div id="guest-name-container" class="mb-4">
-                    <p class="mb-1">Kepada Yth. Bapak/Ibu/Saudara/i,</p>
-                    <h4 id="guest-name-display" class="fw-bold">Pak Nuh</h4> <!-- Default atau diisi JS -->
-                </div>
-    
-                <button type="button" id="open-invitation" class="btn btn-light shadow rounded-pill px-4 py-2">
-                    <i class="fas fa-envelope-open me-2"></i>Buka Undangan
-                </button>
+    <div id="welcome-screen" class="loading-page" role="dialog" aria-modal="true" aria-labelledby="welcome-title-main"> 
+        <div class="slideshow-container">
+            <div class="slide active"><img src="assets/images/foto-utama-1.jpeg" alt="Imam dan Thita berpose di taman"></div>
+            <div class="slide"><img src="assets/images/foto-utama-2.jpeg" alt="Imam dan Thita tertawa bersama"></div>
+            <div class="slide"><img src="assets/images/foto-utama-3.jpeg" alt="Detail cincin pernikahan Imam dan Thita"></div>
+            <!-- Tambahkan slide lain jika perlu -->
+        </div>
+        
+        <div class="welcome-content"> <!-- Kontainer untuk teks dan tombol, diposisikan di atas slideshow -->
+            <h2 class="font-esthetic mb-3" id="welcome-title-main"> The Wedding of</h2>
+            <!-- <img src="assets/images/foto-utama.jpeg" alt="Foto prewedding Imam & Thita" class="img-fluid rounded-circle shadow mb-4 mx-auto welcome-photo"> -->
+            <h2 class="font-esthetic mb-4">Imam & Thita</h2>
+                
+            <div id="guest-name-container" class="mb-4">
+                <p class="mb-1">Kepada Yth. Bapak/Ibu/Saudara/i,</p>
+                <h4 id="guest-name-display" class="fw-bold">Pak Nuh</h4> 
             </div>
+    
+            <button type="button" id="open-invitation" class="btn btn-light shadow rounded-pill px-4 py-2">
+                <i class="fas fa-envelope-open me-2"></i>Buka Undangan
+            </button>
         </div>
     </div>
     <!-- Akhir Welcome Screen -->
