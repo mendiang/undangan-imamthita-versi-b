@@ -248,25 +248,35 @@
    section#galeri, #love-gift { background-color: #f8f9fa; }
 
    .mempelai-foto-container {
-        width: 180px; /* Tentukan LEBAR yang diinginkan untuk area bulat */
-        height: 180px; /* Tentukan TINGGI yang SAMA dengan lebar untuk membuatnya persegi */
+        width: 160px; /* Tentukan LEBAR yang diinginkan untuk area bulat */
+        height: 160px; /* Tentukan TINGGI yang SAMA dengan lebar untuk membuatnya persegi */
         border-radius: 50%; /* Ini yang membuatnya bulat */
         overflow: hidden; /* PENTING: untuk memotong gambar agar sesuai bentuk bulat */
-        margin: 0 auto 1.5rem auto; /* Pusatkan kontainer dan beri margin bawah */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), 0 0 0 3px #eee; /* Shadow dan border seperti sebelumnya */
-        /* border: 3px solid #eee; /* Jika ingin border terpisah dari shadow */
-        position: relative; /* Jika perlu untuk elemen overlay di masa depan */
+        margin: 0 auto 1.5rem auto; 
+        position: relative; /* Jika gambar di dalamnya akan diposisikan absolut atau untuk transform origin */
     }
 
     .mempelai-foto {
         width: 100%; /* Gambar mengisi lebar kontainer */
         height: 100%; /* Gambar mengisi tinggi kontainer */
         object-fit: cover;  /* INI KUNCINYA untuk ZOOM IN dan mengisi area tanpa distorsi */
-                            /* Gambar akan di-crop agar pas dengan rasio aspek kontainer */
-        object-position: center center; /* Fokus zoom di tengah gambar.
-                                       Bisa diubah ke 'center top' jika wajah ada di atas,
-                                       atau 'center 30%' untuk sedikit ke atas dari tengah, dll. */
         display: block; /* Menghilangkan spasi ekstra di bawah gambar inline */
+        transition: transform 0.3s ease; /* Opsional: transisi jika ingin efek hover zoom */
+    }
+
+    /* Object-position spesifik untuk foto PRIA */
+    .mempelai-foto.mempelai-foto-pria {
+        object-position: top left; /* Contoh: fokus sedikit ke atas dari tengah, sesuaikan untuk foto pria */
+        /* Atau bisa juga: object-position: top center; */
+        transform: scale(1.7);
+        transform-origin: 40% center ;
+    }
+
+    /* Object-position spesifik untuk foto WANITA */
+    .mempelai-foto.mempelai-foto-wanita {
+        object-position: center 30%; /* Contoh: fokus lebih ke atas lagi, sesuaikan untuk foto wanita */
+        /* Atau bisa juga: object-position: center center; jika pas di tengah */
+        transform: scale(1.7);
     }
 
     /* Sesuaikan styling untuk h3 dan p jika perlu setelah ukuran gambar berubah */
@@ -279,7 +289,7 @@
         font-size: 0.9rem;
         color: #555;
     }
-    
+
    /* ... (Sisa styling Anda untuk elemen spesifik di section: #countdown (mobile), #mempelai img, #galeri img, #love-gift .card, footer, separator) ... */
    
    /* Media Query untuk Mobile Kecil (jika ada penyesuaian lebih lanjut) */
