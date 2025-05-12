@@ -5,264 +5,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Imam & Thita</title>
 
-    <!-- 1. Google Fonts (Contoh: Josefin Sans & Sacramento seperti di template asli) -->
+    <!-- 1. Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Link untuk Font Script BARU (Contoh: Great Vibes) -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-     <!-- Link untuk Font Body BARU (Contoh pakai Montserrat) -->
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
      
     <!-- 2. Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Font Awesome -->
+    <!-- 3. Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- AOS CSS -->
+    <!-- 4. AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-    <!-- Link ke File CSS Kita -->
+    <!-- 5. Custom CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Nanti kita tambahkan library lain di sini -->
-
 </head>
 <body>
 
-        <!-- Welcome Screen -->
-    <div id="welcome-screen" class="loading-page" role="dialog" aria-modal="true" aria-labelledby="welcome-title-main"> 
-        <div class="slideshow-container">
-            <div class="slide active"><img src="assets/images/foto-utama-1.jpeg" alt="Imam dan Thita berpose di taman"></div>
-            <div class="slide"><img src="assets/images/foto-utama-2.jpeg" alt="Imam dan Thita tertawa bersama"></div>
-            <div class="slide"><img src="assets/images/foto-utama-3.jpeg" alt="Detail cincin pernikahan Imam dan Thita"></div>
-            <!-- Tambahkan slide lain jika perlu -->
-        </div>
+     <!-- KONTENER UTAMA YANG AKAN MENJADI FLEX CONTAINER DI DESKTOP -->
+     <div class="site-container">
+
+
+        <!-- WELCOME SCREEN SEKALIGUS PRIMARY PANE DI DESKTOP -->
+        <aside id="welcome-screen" class="primary-pane-desktop" role="dialog" aria-modal="false" aria-labelledby="welcome-title-main">
+            <!-- Di mobile, ini akan jadi .loading-page full screen -->
+            <!-- Di desktop, ini akan jadi panel samping --> 
         
-        <div class="welcome-content"> <!-- Kontainer untuk teks dan tombol, diposisikan di atas slideshow -->
-            <h2 class="font-esthetic mb-3" id="welcome-title-main"> The Wedding of</h2>
-            <!-- <img src="assets/images/foto-utama.jpeg" alt="Foto prewedding Imam & Thita" class="img-fluid rounded-circle shadow mb-4 mx-auto welcome-photo"> -->
-            <h2 class="font-esthetic mb-4">Imam & Thita</h2>
-                
-            <div id="guest-name-container" class="mb-4">
-                <p class="mb-1">Kepada Yth. Bapak/Ibu/Saudara/i,</p>
-                <h4 id="guest-name-display" class="fw-bold">Pak Nuh</h4> 
+            <div class="slideshow-background-container">
+                <div class="slide-bg active"><img src="assets/images/foto-utama-1.jpeg" alt="Foto prewedding Imam dan Thita 1"></div>
+                <div class="slide-bg"><img src="assets/images/foto-utama-2.jpeg" alt="Foto prewedding Imam dan Thita 2"></div>
+                <div class="slide-bg"><img src="assets/images/foto-utama-3.jpeg" alt="Foto prewedding Imam dan Thita 3"></div>
+                <!-- Tambahkan slide-bg lain jika perlu -->
             </div>
-    
-            <button type="button" id="open-invitation" class="btn btn-light shadow rounded-pill px-4 py-2">
-                <i class="fas fa-envelope-open me-2"></i>Buka Undangan
-            </button>
-        </div>
-    </div>
-    <!-- Akhir Welcome Screen -->
-    
-     <!-- Konten Undangan Akan Disusun di Sini -->
-    <header id="hero" class="container text-center">
-        <h1 class="font-esthetic">Undangan Pernikahan</h1> <!-- Terapkan font esthetic -->
-        <h2>Imam & Thita</h2>
-        <p>12 Juli 2025</p>
-       <!--  <img src="images/foto-utama.jpeg" alt="Foto Utama" class="img-fluid rounded-circle border border-3 border-light shadow my-4 mx-auto" style="width: 13rem; height: 13rem; object-fit: cover;"> --> <!-- Ganti nama file, tambah class Bootstrap, atur ukuran & object-fit -->
-        <!-- Tombol Save to Calendar -->
-        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Imam+%26+Thita+Wedding&location=Medan&dates=20250712T010000Z%2F20250712T090000Z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-light rounded-pill mt-3">
-            <i class="fas fa-calendar-check me-2"></i> Simpan Tanggal
-        </a>
-        <!-- Akhir Tombol -->
-    </header>
+            <!-- Akhir Slideshow Background -->
 
-    <!-- Contoh SVG Separator -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="section-separator">
-        <path fill="#ffffff" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,154.7C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path> <!-- Ganti fill="#ffffff" dg warna background section di bawahnya -->
-    </svg>
-
-    <section id="mempelai" class="container" data-aos="fade-up">
-        <h2 class="text-center mb-4">Pasangan Mempelai</h2><!-- Class text-center & margin-bottom -->
-        <div class="row text-center"><!-- Buat baris, rata tengah -->
-            <div class="col-md-6 mb-4"> <!-- Kolom 1 (setengah layar di medium, penuh di mobile), margin bawah -->
-                <img src="assets/images/foto-pria.jpeg" alt="Foto Pria" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
-                <h3 class="font-esthetic">Imam Mukhri</h3>
-                <p>Putra dari Bapak Mukhlish Irsan & Ibu Asripa Rahmiwaty</p>
-            </div>
-            <div class="col-md-6 mb-4"> <!-- Kolom 2 -->
-                <img src="assets/images/foto-wanita.jpeg" alt="Foto Wanita" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
-                <h3 class="font-esthetic">Thita Rahani Azlia Nasution</h3>
-                <p>Putri dari Bapak Sutara Azhar Nasution & Ibu Muthia Amalia Lubis</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="tanggal-lokasi" class="container text-center py-5"> <!-- Padding atas-bawah -->
-        <h2 class="font-esthetic mb-4">Save The Date</h2> <!-- Kurangi margin bawah sedikit -->
-
-        <!-- Countdown Timer Display -->
-        <div id="countdown" class="row justify-content-center mb-5 border rounded-pill shadow-sm py-3 mx-auto" style="max-width: 400px; background-color: rgba(255,255,255,0.8);">
-            <div class="col-3">
-                <h3 id="days" class="m-0">0</h3>
-                <small>Hari</small>
-            </div>
-            <div class="col-3">
-                <h3 id="hours" class="m-0">0</h3>
-                <small>Jam</small>
-            </div>
-            <div class="col-3">
-                <h3 id="minutes" class="m-0">0</h3>
-                <small>Menit</small>
-            </div>
-            <div class="col-3">
-                <h3 id="seconds" class="m-0">0</h3>
-                <small>Detik</small>
-            </div>
-        </div>
-        <!-- Akhir Countdown Timer Display -->
-
-        <div class="row justify-content-center"><!-- Pusatkan kolom -->
-            <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="100"> <!-- Kolom untuk Akad -->
-                <div class="shadow p-4 rounded"> <!-- Box shadow, padding, rounded -->
-                    <h3 class="font-esthetic">Akad Nikah</h3>
-                    <p><i class="fas fa-calendar-alt me-2"></i>Sabtu, Tanggal: 12 Juli 2025</p> <!-- Tambah icon nanti -->
-                    <p><i class="fas fa-clock me-2"></i>Waktu: Pukul 08.00 WIB</p> <!-- Tambah icon nanti -->
+            <!-- Area Konten Welcome Screen -->
+            <div class="welcome-content-area"> 
+                <h2 class="font-esthetic mb-3" id="welcome-title-main">The Wedding of</h2>
+                <h2 class="font-esthetic mb-4">Imam & Thita</h2>
+                <div id="guest-name-container" class="mb-4" style="display: none;"> <!-- JS akan menampilkan jika ada 'to' di URL -->
+                    <p class="mb-1">Kepada Yth. Bapak/Ibu/Saudara/i,</p>
+                    <h4 id="guest-name-display" class="fw-bold">Nama Tamu</h4> 
                 </div>
+                <button type="button" id="open-invitation" class="btn btn-light shadow rounded-pill px-4 py-2">
+                    <i class="fas fa-envelope-open me-2" aria-hidden="true"></i>Buka Undangan
+                </button>
             </div>
-            <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-delay="200"> <!-- Animasi fade dari kiri, delay 200ms -->
-                <div class="shadow p-4 rounded">
-                    <h3 class="font-esthetic">Resepsi</h3>
-                    <p><i class="fas fa-calendar-alt me-2"></i>Sabtu, Tanggal: 12 Juli 2025</p>
-                    <p><i class="fas fa-clock me-2"></i>Waktu: Pukul 11.00 WIB</p>
+         <!-- Akhir Area Konten Welcome Screen -->
+        </aside>
+        <!-- AKHIR WELCOME SCREEN / PRIMARY PANE -->
+
+        <!-- SECONDARY PANE (Konten utama undangan yang bisa scroll) -->
+        <!-- Awalnya disembunyikan, atau memiliki visibility: hidden; opacity: 0; -->
+        <!-- Akan ditampilkan/diaktifkan oleh JS setelah #open-invitation diklik -->
+        <main id="main-invitation-content" class="secondary-pane-desktop">
+            <!-- Hero Section - SATU STRUKTUR untuk Mobile dan Desktop -->
+            <header id="hero-main" class="hero-section">
+                <!-- ... (Konten Hero Anda seperti sebelumnya: background, overlay, teks, countdown, tombol kalender) ... -->
+                <div class="hero-background-image-secondary"></div><!-- Atau atur background langsung di header#hero-main -->
+                <div class="hero-content-overlay-secondary"> 
+                    <div class="hero-text-details-secondary">
+                        <p class="hero-wedding-of-secondary">The Wedding of</p>
+                        <h2 class="hero-names-secondary font-esthetic">Imam & Thita</h2> 
+                        <p class="hero-date-secondary">12 JULI 2025</p> 
+                    </div>
+                    <div id="countdown-hero" class="hero-countdown-secondary">
+                        <div class="countdown-item"><h3 id="days-hero">0</h3><small>Days</small></div>
+                        <div class="countdown-item"><h3 id="hours-hero">0</h3><small>Hours</small></div>
+                        <div class="countdown-item"><h3 id="minutes-hero">0</h3><small>Minutes</small></div>
+                        <div class="countdown-item"><h3 id="seconds-hero">0</h3><small>Seconds</small></div>
+                    </div>
+                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Imam+%26+Thita+Wedding&location=Medan&dates=20250712T010000Z%2F20250712T090000Z" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-light rounded-pill mt-3">
+                        <i class="fas fa-calendar-check me-2" aria-hidden="true"></i>Simpan Tanggal
+                    </a>
+                </div> 
+            </header>
+            <!-- Akhir Hero Section di Secondary Pane -->
+
+            <!-- SVG Separator -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="section-separator">
+                <path fill="#ffffff" fill-opacity="1" d="M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,165.3C672,160,768,96,864,96C960,96,1056,160,1152,154.7C1248,149,1344,75,1392,37.3L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+
+            <section id="mempelai" class="container" data-aos="fade-up">
+                <h2 class="text-center mb-4">Pasangan Mempelai</h2>
+                <div class="row text-center">
+                    <div class="col-md-6 mb-4">
+                        <img src="assets/images/foto-pria.jpeg" alt="Foto Imam Mukhri" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
+                        <h3 class="font-esthetic">Imam Mukhri</h3>
+                        <p>Putra dari Bapak Mukhlish Irsan & Ibu Asripa Rahmiwaty</p>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <img src="assets/images/foto-wanita.jpeg" alt="Foto Thita Rahani Azlia Nasution" class="img-fluid rounded-circle border border-3 border-light shadow mb-3"> 
+                        <h3 class="font-esthetic">Thita Rahani Azlia Nasution</h3>
+                        <p>Putri dari Bapak Sutara Azhar Nasution & Ibu Muthia Amalia Lubis</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="mt-4 shadow p-4 rounded">  <!-- Bagian lokasi terpisah, margin atas -->
-            <h3 class="font-esthetic">Lokasi</h3>
-            <p><i class="fas fa-map-marker-alt me-2"></i>Jl. Abdullah Lubis No.79/101, Merdeka, Kec. Medan Baru, Kota Medan, Sumatera Utara 20153</p>
-            <a href="https://maps.app.goo.gl/kcxY17HukNMPK8EU6" target="_blank" class="btn btn-outline-dark rounded-pill mt-2">  <!-- Tombol Bootstrap -->
-            <i class="fas fa-map-location-dot me-2"></i>Lihat Peta <!-- Icon nanti -->
-            </a> 
-        </div>
-    </section>
+            </section>
 
-    <section id="galeri" class="container py-5" data-aos="zoom-in-up">
-        <h2 class="text-center font-esthetic mb-5">Momen Bahagia</h2>
-        <div class="row justify-content-center g-3"> <!-- g-3 untuk gutter/jarak antar kolom -->
-            <div class="col-md-4 col-6"> <!-- 3 kolom di desktop, 2 di mobile -->
-                <img src="assets/images/gallery1.jpeg" alt="Galeri 1" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
-            </div>
-            <div class="col-md-4 col-6">
-                <img src="assets/images/gallery2.jpeg" alt="Galeri 2" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
-            </div>
-            <div class="col-md-4 col-6">
-                <img src="assets/images/gallery3.jpeg" alt="Galeri 3" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> 
-            </div>
-            <div class="col-md-4 col-6">
-                <img src="assets/images/gallery4.jpeg" alt="Galeri 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> <!-- Tambah jika perlu -->
-            </div>
-            <div class="col-md-4 col-6">
-                <img src="assets/images/gallery5.jpeg" alt="Galeri 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> <!-- Tambah jika perlu -->
-            </div>
-            <div class="col-md-4 col-6">
-                <img src="assets/images/gallery6.jpeg" alt="Galeri 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> <!-- Tambah jika perlu -->
-            </div><!-- Tambahkan div kolom lagi sesuai jumlah foto -->
-        </div><!-- Untuk Carousel seperti contoh, perlu struktur HTML Carousel Bootstrap -->
-    </section>
+            <section id="tanggal-lokasi" class="container text-center py-5">
+                <h2 class="font-esthetic mb-4">Save The Date</h2>
 
-     <!-- Modal untuk Galeri -->
-    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Dialog di tengah & besar -->
-      <div class="modal-content bg-transparent border-0"> <!-- Konten transparan, tanpa border -->
-        <div class="modal-body p-0">
-          <button type="button" class="btn-close position-absolute top-0 end-0 p-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1056; background-color: white;"></button> <!-- Tombol close -->
-          <img src="" class="img-fluid rounded" id="modalImage" alt="Gambar Galeri"> <!-- Tempat gambar modal -->
-        </div>
-      </div>
-    </div>
-    </div>
+                <!-- Countdown Timer Display -->
+                <div id="countdown" class="row justify-content-center mb-5 border rounded-pill shadow-sm py-3 mx-auto" style="max-width: 400px; background-color: rgba(255,255,255,0.8);">
+                    <div class="col-3">
+                        <h3 id="days" class="m-0">0</h3>
+                        <small>Hari</small>
+                    </div>
+                    <div class="col-3">
+                        <h3 id="hours" class="m-0">0</h3>
+                        <small>Jam</small>
+                    </div>
+                    <div class="col-3">
+                        <h3 id="minutes" class="m-0">0</h3>
+                        <small>Menit</small>
+                    </div>
+                    <div class="col-3">
+                        <h3 id="seconds" class="m-0">0</h3>
+                        <small>Detik</small>
+                    </div>
+                </div>
+                <!-- Akhir Countdown Timer Display -->
 
-    <!-- Love Gift Section -->
-    <section id="love-gift" class="container py-5 text-center">
-        <h2 class="font-esthetic mb-4">Kirim Hadiah</h2>
-        <p class="mb-5 lead" style="font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Doa restu Anda adalah hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, kami ucapkan terima kasih.
-        </p>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="100">
+                        <div class="shadow p-4 rounded">
+                            <h3 class="font-esthetic">Akad Nikah</h3>
+                            <p><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>Sabtu, Tanggal: 12 Juli 2025</p>
+                            <p><i class="fas fa-clock me-2" aria-hidden="true"></i>Waktu: Pukul 08.00 WIB</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-delay="200">
+                        <div class="shadow p-4 rounded">
+                            <h3 class="font-esthetic">Resepsi</h3>
+                            <p><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>Sabtu, Tanggal: 12 Juli 2025</p>
+                            <p><i class="fas fa-clock me-2" aria-hidden="true"></i>Waktu: Pukul 11.00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 shadow p-4 rounded">
+                    <h3 class="font-esthetic">Lokasi</h3>
+                    <p><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Jl. Abdullah Lubis No.79/101, Merdeka, Kec. Medan Baru, Kota Medan, Sumatera Utara 20153</p>
+                    <a href="https://maps.app.goo.gl/kcxY17HukNMPK8EU6" target="_blank" class="btn btn-outline-dark rounded-pill mt-2">
+                    <i class="fas fa-map-location-dot me-2" aria-hidden="true"></i>Lihat Peta
+                    </a> 
+                </div>
+            </section>
 
-        <div class="row justify-content-center g-4">
+            <section id="galeri" class="container py-5" data-aos="zoom-in-up">
+                <h2 class="text-center font-esthetic mb-5">Momen Bahagia</h2>
+                <div class="row justify-content-center g-3">
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery1.jpeg" alt="Momen bahagia Imam dan Thita 1" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery2.jpeg" alt="Momen bahagia Imam dan Thita 2" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery3.jpeg" alt="Momen bahagia Imam dan Thita 3" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)"> 
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery4.jpeg" alt="Momen bahagia Imam dan Thita 4" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery5.jpeg" alt="Momen bahagia Imam dan Thita 5" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <img src="assets/images/gallery6.jpeg" alt="Momen bahagia Imam dan Thita 6" class="img-fluid rounded shadow-sm" data-bs-toggle="modal" data-bs-target="#galleryModal" onclick="showImage(this.src)">
+                    </div>
+                </div>
+            </section>
 
-            <!-- Kolom Bank Transfer -->
-            <div class="col-md-5" data-aos="fade-up">
-                <div class="card shadow-sm h-100"> <!-- Card Bootstrap, tinggi 100% agar sama rata -->
-                    <div class="card-body">
-                        <h4 class="font-esthetic mb-3"> <i class="fas fa-money-bill-wave me-2"></i> Transfer Bank</h4>
-                        <img src="assets/images/logo-bri.png" alt="Logo Bank BRI" style="max-height: 35px;" class="mb-3"> <!-- Ganti logo bank jika perlu -->
-                        <p class="mb-1">Bank Rakyat Indonesia (BRI)</p>
-                        <p class="fw-bold fs-5 mb-2" id="norek">7018 0100 6421 505</p> <!-- Ganti No Rek -->
-                        <p class="mb-3">a.n. IMAM MUKHRI</p> <!-- Ganti Nama -->
-                        <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard('7018 0100 6421 505', this)">
-                            <i class="fas fa-copy me-1"></i> Salin No. Rekening
-                        </button>
+            <!-- Modal untuk Galeri -->
+            <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content bg-transparent border-0">
+                        <div class="modal-body p-0">
+                            <button type="button" class="btn-close position-absolute top-0 end-0 p-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1056; background-color: white;"></button>
+                            <img src="" class="img-fluid rounded" id="modalImage" alt="Gambar Galeri Diperbesar">
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Akhir Modal Galeri -->
 
-        <!-- Kolom Kirim Kado / Alamat -->
-        <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h4 class="font-esthetic mb-3"><i class="fas fa-gift me-2"></i> Kirim Kado</h4>
-                    <p class="mb-1">Silakan kirim ke alamat:</p>
-                    <p id="alamat" class="mb-3" style="font-size: 0.9rem;">
-                       [Alamat Lengkap Anda untuk Pengiriman Kado, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos]
-                    </p> <!-- Ganti Alamat -->
-                    <p class="mb-1 fw-bold">a.n. [Nama Penerima Kado]</p> <!-- Ganti Nama Penerima -->
-                     <p class="mb-3" style="font-size: 0.9rem;">No. HP: [Nomor HP Penerima]</p> <!-- Ganti No HP -->
-                    <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard(document.getElementById('alamat').innerText, this)">
-                       <i class="fas fa-copy me-1"></i> Salin Alamat
-                    </button>
+            <!-- Love Gift Section -->
+            <section id="love-gift" class="container py-5 text-center">
+                <h2 class="font-esthetic mb-4">Kirim Hadiah</h2>
+                <p class="mb-5 lead" style="font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Doa restu Anda adalah hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, kami ucapkan terima kasih.
+                </p>
+
+                <div class="row justify-content-center g-4">
+                    <!-- Kolom Bank Transfer -->
+                    <div class="col-md-5" data-aos="fade-up">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h4 class="font-esthetic mb-3"> <i class="fas fa-money-bill-wave me-2" aria-hidden="true"></i> Transfer Bank</h4>
+                                <img src="assets/images/logo-bri.png" alt="Logo Bank BRI" style="max-height: 35px;" class="mb-3">
+                                <p class="mb-1">Bank Rakyat Indonesia (BRI)</p>
+                                <p class="fw-bold fs-5 mb-2" id="norek">7018 0100 6421 505</p>
+                                <p class="mb-3">a.n. IMAM MUKHRI</p>
+                                <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard('7018 0100 6421 505', this)">
+                                    <i class="fas fa-copy me-1" aria-hidden="true"></i> Salin No. Rekening
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kirim Kado / Alamat -->
+                    <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h4 class="font-esthetic mb-3"><i class="fas fa-gift me-2" aria-hidden="true"></i> Kirim Kado</h4>
+                                <p class="mb-1">Silakan kirim ke alamat:</p>
+                                <address id="alamat" class="mb-3" style="font-size: 0.9rem; font-style: normal;">
+                                <!-- Ganti dengan Alamat Lengkap Anda -->
+                                Jl. Contoh Alamat No. 123, RT.001/RW.002<br>
+                                Kel. Contoh Kelurahan, Kec. Contoh Kecamatan<br>
+                                Kota Contoh, Provinsi Contoh 12345
+                                </address>
+                                <p class="mb-1 fw-bold">a.n. Imam Mukhri atau Thita Rahani</p> <!-- Ganti Nama Penerima -->
+                                <p class="mb-3" style="font-size: 0.9rem;">No. HP: 0812-3456-7890</p> <!-- Ganti No HP -->
+                                <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard(document.getElementById('alamat').innerText.trim(), this)">
+                                    <i class="fas fa-copy me-1" aria-hidden="true"></i> Salin Alamat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-         <!-- (Opsional) Kolom QRIS -->
-         <!--
-         <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
-             <div class="card shadow-sm h-100">
-                 <div class="card-body">
-                     <h4 class="font-esthetic mb-3"><i class="fas fa-qrcode me-2"></i> QRIS</h4>
-                     <p class="mb-3">Scan QR Code di bawah ini:</p>
-                     <img src="images/qris.png" alt="QRIS Code" class="img-fluid rounded mb-3" style="max-width: 200px;"> <!- Ganti Gambar QRIS ->
-                     <p class="fw-bold">a.n. [Nama di Akun QRIS]</p> <!- Ganti Nama ->
-                 </div>
-             </div>
-         </div>
-         -->
+            </section>
+            <!-- Akhir Love Gift Section -->
 
+            <footer class="container-fluid text-center py-4">
+                <p class="mb-1">Terima kasih atas doa restunya.</p>
+                <p class="mb-0">© 2025 Imam Mukhri. Dibuat dengan ❤️.</p>
+            </footer>
+
+            <!-- Tambahkan section lain di sini (Quote, Love Story, RSVP, Ucapan, dll.) -->
+
+         </main>
+        <!-- Akhir Secondary Pane -->
     </div>
-</section>
-<!-- Akhir Love Gift Section -->
 
-    <footer class="container-fluid text-center py-4"> <!-- Lebar penuh, padding -->
-        <p class="mb-1">Terima kasih atas doa restunya.</p>
-        <p class="mb-0">© 2025 Imam Mukhri. Dibuat dengan ❤️.</p>
-    </footer>
+   
 
-    <!-- Taruh sebelum tag penutup </body> -->
+    <!-- Audio Background -->
     <audio id="background-music" loop>
-        <!-- Ganti nama file musik Anda -->
         <source src="assets/music/Thank You for Loving Me (Instrumental Version).mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
     </audio>
 
+    <!-- Tombol Kontrol Musik -->
     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1030;">
         <button type="button" id="button-music" class="btn btn-light btn-sm rounded-circle shadow" aria-label="Play/Pause Music">
-            <!-- Icon akan diganti oleh JS, mulai dengan icon play -->
-            <i class="fas fa-play"></i>
+            <i class="fas fa-play" aria-hidden="true"></i>
         </button>
     </div>
 
-    <!-- Library JavaScript Bootstrap (diperlukan untuk beberapa komponennya) -->
+    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-    <!-- Link ke File JavaScript Kita -->
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
 
 </body>
