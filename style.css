@@ -99,8 +99,8 @@
     .welcome-content-area #guest-name-container p { font-size: 0.85rem; color:#f0f0f0; opacity: 0.9; margin-bottom: 0.15rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);}
     .welcome-content-area #guest-name-display { font-size: 1.3rem; font-weight: bold; color: #FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.7);}
     .welcome-content-area #open-invitation {
-        background-color: #5D4037; color: white; border: none; padding: 12px 30px;
-        font-size: 1rem; font-weight: bold; margin-top: 25px; 
+        background-color: #5D4037; color: white; border: none; 
+        font-size: 2rem; font-weight: bold; margin-top: 25px; 
         transition: background-color 0.3s ease, transform 0.2s ease;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
@@ -204,10 +204,6 @@
         #welcome-screen.primary-pane-desktop #guest-name-container { /* Styling nama tamu di primary pane desktop */
             display: block !important; margin-top: 20px; margin-bottom: 20px;
         }
-
-        /*#welcome-screen.primary-pane-desktop #guest-name-container p { font-size: 0.9rem; color: #5D4037; opacity: 0.95; }
-        #welcome-screen.primary-pane-desktop #guest-name-display { font-size: 1.5rem; color: #4e342e; font-weight: bold; } */
-   
    
         .secondary-pane-desktop {
             display: block !important; flex: 1 !important; height: 100vh !important;
