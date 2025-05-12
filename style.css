@@ -1,231 +1,249 @@
-/* ==========================================================================
-   1. Google Fonts Import & Reset
-   ========================================================================== */
-   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+/*  ==========================================================================
+    1. Google Fonts Import & Reset
+    ========================================================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
 
-   /* Basic Reset & Body Styling */
-   body {
-       font-family: 'Montserrat', sans-serif;
-       margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-       background-color: #f4f4f4;
-       color: #333;
-       line-height: 1.6;
-   }
+    /* Basic Reset & Body Styling */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+    }
    
-   /* Mencegah scroll pada body saat diperlukan */
-   body.no-scroll-global,
-   body.desktop-layout-active {
-       overflow: hidden;
-   }
+    /* Mencegah scroll pada body saat diperlukan */
+    body.no-scroll-global,
+    body.desktop-layout-active {
+        overflow: hidden;
+    }
    
-   /* ==========================================================================
+/*  ==========================================================================
       2. Typography & Utility Classes
-      ========================================================================== */
-   .font-esthetic {
-       font-family: 'Great Vibes', cursive;
-       font-weight: normal;
-   }
+    ========================================================================== */
+    .font-esthetic {
+        font-family: 'Great Vibes', cursive;
+        font-weight: normal;
+    }
    
-   .d-none { /* Dari Bootstrap, bisa ada di custom CSS juga */
-       display: none !important;
-   }
+    .d-none { /* Dari Bootstrap, bisa ada di custom CSS juga */
+        display: none !important;
+    }
    
-   a {
-       color: #007bff;
-       text-decoration: none;
-   }
-   a:hover {
-       text-decoration: underline;
-   }
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
    
-   /* ==========================================================================
+/*  ==========================================================================
       3. WELCOME SCREEN (Primary Pane di Desktop, Full Screen di Mobile)
-      ========================================================================== */
-   #welcome-screen {
-       position: fixed; /* Default untuk mobile full screen */
-       inset: 0;
-       width: 100%;
-       height: 100vh;
-       z-index: 1056;
-       opacity: 1;
-       visibility: visible;
-       transition: opacity 0.8s ease-out, visibility 0s linear 0.8s;
-       background-color: #333; /* Fallback */
-       display: flex;
-       flex-direction: column;
-       justify-content: flex-end;
-       align-items: center;
-       overflow: hidden;
-   }
+    ========================================================================== */
+    #welcome-screen {
+        position: fixed; /* Default untuk mobile full screen */
+        inset: 0;
+        width: 100%;
+        height: 100vh; /* Fallback */
+        height: -webkit-fill-available; /* Untuk browser berbasis WebKit di iOS */
+        z-index: 1056;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.8s ease-out, visibility 0s linear 0.8s;
+        background-color: #333; /* Fallback */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: hidden;
+    }
    
-   .slideshow-background-container {
-       position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;
-   }
-   .slideshow-background-container .slide-bg {
-       position: absolute; inset: 0; width: 100%; height: 100%;
-       opacity: 0; transition: opacity 1.2s ease-in-out;
-   }
-   .slideshow-background-container .slide-bg.active { opacity: 1; }
-   .slideshow-background-container .slide-bg img {
-       width: 100%; height: 100%; object-fit: cover; object-position: center;
-   }
-   .slideshow-background-container::after { /* Overlay */
-       content: ''; position: absolute; inset: 0; width: 100%; height: 100%;
-       background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 100%);
-       z-index: 2;
-   }
+    .slideshow-background-container {
+        position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;
+    }
+
+    .slideshow-background-container .slide-bg {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        opacity: 0; transition: opacity 1.2s ease-in-out;
+    }
+
+    .slideshow-background-container .slide-bg.active { opacity: 1; }
+    .slideshow-background-container .slide-bg img {
+        width: 100%; height: 100%; object-fit: cover; object-position: center;
+    }
+
+    .slideshow-background-container::after { /* Overlay */
+        content: ''; position: absolute; inset: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.6) 100%);
+        z-index: 2;
+    }
    
-   .welcome-content-area {
-       position: relative; z-index: 3; width: 100%; max-width: 480px; height: auto; max-height: 70vh;
-       background-color: rgba(245, 240, 230, 0.97); color: #382a22;
-       padding: 30px 25px 25px 25px; border-top-left-radius: 30px; border-top-right-radius: 30px;
-       box-shadow: 0 -8px 30px rgba(0,0,0,0.15); overflow-y: auto; text-align: center; box-sizing: border-box;
-       opacity: 0; transform: translateY(80px);
-       transition: opacity 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-   }
-   #welcome-screen.loaded .welcome-content-area { opacity: 1; transform: translateY(0); }
+    .welcome-content-area {
+        position: relative; z-index: 3; width: 100%; max-width: 480px; height: auto; max-height: 70vh;
+        background-color: rgba(245, 240, 230, 0.97); color: #382a22;
+        padding: 30px 25px 25px 25px; border-top-left-radius: 30px; border-top-right-radius: 30px;
+        box-shadow: 0 -8px 30px rgba(0,0,0,0.15); overflow-y: auto; text-align: center; box-sizing: border-box;
+        opacity: 0; transform: translateY(80px);
+        transition: opacity 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    #welcome-screen.loaded .welcome-content-area { opacity: 1; transform: translateY(0); }
    
-   .welcome-content-area .font-esthetic { color: #6d4c41; text-shadow: none; font-size: 2rem; line-height: 1.2; }
-   .welcome-content-area h2.font-esthetic.mb-3 { font-size: 1.6rem; margin-bottom: 0.25rem !important; font-weight: normal; }
-   .welcome-content-area h2.font-esthetic.mb-4 { font-size: 2.8rem; margin-bottom: 1.2rem !important; }
-   .welcome-content-area #guest-name-container { margin-bottom: 1.2rem !important; }
-   .welcome-content-area #guest-name-container p { font-size: 0.85rem; color: #5f4336; opacity: 0.9; margin-bottom: 0.15rem; }
-   .welcome-content-area #guest-name-display { font-size: 1.3rem; font-weight: bold; color: #4e342e; }
-   .welcome-content-area #open-invitation {
-       background-color: #5D4037; color: white; border: none; padding: 12px 30px;
-       font-size: 1rem; font-weight: bold; margin-top: 20px; border-radius: 50px;
-       transition: background-color 0.3s ease, transform 0.2s ease;
-   }
-   .welcome-content-area #open-invitation:hover { background-color: #4e342e; transform: translateY(-2px); }
-   .welcome-content-area #open-invitation:active { transform: translateY(0px); }
+    .welcome-content-area .font-esthetic { color: #6d4c41; text-shadow: none; font-size: 2rem; line-height: 1.2; }
+    .welcome-content-area h2.font-esthetic.mb-3 { font-size: 1.6rem; margin-bottom: 0.25rem !important; font-weight: normal; }
+    .welcome-content-area h2.font-esthetic.mb-4 { font-size: 2.8rem; margin-bottom: 1.2rem !important; }
+    .welcome-content-area #guest-name-container { margin-bottom: 1.2rem !important; }
+    .welcome-content-area #guest-name-container p { font-size: 0.85rem; color: #5f4336; opacity: 0.9; margin-bottom: 0.15rem; }
+    .welcome-content-area #guest-name-display { font-size: 1.3rem; font-weight: bold; color: #4e342e; }
+    .welcome-content-area #open-invitation {
+        background-color: #5D4037; color: white; border: none; padding: 12px 30px;
+        font-size: 1rem; font-weight: bold; margin-top: 20px; border-radius: 50px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .welcome-content-area #open-invitation:hover { background-color: #4e342e; transform: translateY(-2px); }
+    .welcome-content-area #open-invitation:active { transform: translateY(0px); }
    
-   /* ==========================================================================
+/*  ==========================================================================
       LAYOUT UTAMA UNDANGAN (Site Container & Panes)
-      ========================================================================== */
-   /* .invitation-layout-container tidak perlu style khusus di mobile */
+    ========================================================================== */
+    /* .invitation-layout-container tidak perlu style khusus di mobile */
    
-   .secondary-pane-desktop { /* Target <main class="secondary-pane-desktop"> */
-       width: 100%; /* Default untuk mobile */
-       display: block; /* Selalu block, visibilitas diatur opacity/visibility */
-       background-color: #fff; /* Background dasar konten */
-       opacity: 0;
-       visibility: hidden;
-       transform: translateY(20px); /* Efek masuk default untuk mobile */
-       transition: opacity 0.5s 0.1s ease-out, visibility 0s linear 0.6s, transform 0.5s 0.1s ease-out;
-   }
-   .secondary-pane-desktop.visible-mobile,
-   .secondary-pane-desktop.active { /* Kelas untuk menampilkan */
-       opacity: 1;
-       visibility: visible;
-       transform: translateY(0); /* Reset transform untuk mobile */
-   }
+    .secondary-pane-desktop { /* Target <main class="secondary-pane-desktop"> */
+        width: 100%; /* Default untuk mobile */
+        display: block; /* Selalu block, visibilitas diatur opacity/visibility */
+        background-color: #fff; /* Background dasar konten */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px); /* Efek masuk default untuk mobile */
+        transition: opacity 0.5s 0.1s ease-out, visibility 0s linear 0.6s, transform 0.5s 0.1s ease-out;
+    }
+
+    .secondary-pane-desktop.visible-mobile,
+    .secondary-pane-desktop.active { /* Kelas untuk menampilkan */
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0); /* Reset transform untuk mobile */
+    }
    
-   /* ==========================================================================
+/*  ==========================================================================
       HERO SECTION DI DALAM SECONDARY PANE (Mobile First, Konten Terpusat)
-      ========================================================================== */
-   header#hero-main.hero-section {
-       background-image: url('assets/images/foto-pasangan-bersama-hero.jpeg'); /* GANTI DENGAN FOTO UTAMA HERO ANDA */
-       background-size: cover;
-       background-position: center; /* Default */
-       color: #fff;
-       padding: 60px 20px;
-       text-align: center;
-       position: relative;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       justify-content: center;
-       min-height: 70vh; /* Tinggi minimal untuk mobile */
-       box-sizing: border-box;
-   }
-   header#hero-main.hero-section::before { /* Overlay gelap */
-       content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-       background-color: rgba(0,0,0,0.35); z-index: 1;
-   }
-   header#hero-main.hero-section .hero-content-overlay-secondary {
-       position: relative; z-index: 2; display: flex; flex-direction: column;
-       align-items: center; width: 100%; max-width: 600px; padding: 20px;
-   }
-   header#hero-main.hero-section .hero-wedding-of-secondary { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 5px; }
-   header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 3.5rem; line-height: 1.1; color: #fcefee; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
-   header#hero-main.hero-section .hero-date-secondary { font-size: 1.1rem; opacity: 0.9; margin-bottom: 25px; }
-   header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; color: #fff; }
-   header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 2rem; font-weight: bold; margin-bottom: 0; line-height: 1; color: #fcefee; }
-   header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 0.5px; }
-   header#hero-main.hero-section .hero-calendar-button-secondary { /* Kelas untuk tombol Simpan Tanggal di Hero */
-       border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.9); background-color: rgba(255,255,255,0.1);
-       padding: 8px 18px; font-size: 0.85rem; border-radius: 50px; transition: all 0.3s ease;
-       text-decoration: none; display: inline-flex; align-items: center;
-   }
-   header#hero-main.hero-section .hero-calendar-button-secondary:hover { background-color: rgba(255,255,255,0.25); color: #fff; border-color: #fff; }
+    ========================================================================== */
+    header#hero-main.hero-section {
+        background-image: url('assets/images/foto-pasangan-bersama-hero.jpeg'); /* GANTI DENGAN FOTO UTAMA HERO ANDA */
+        background-size: cover;
+        background-position: center; /* Default */
+        color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh; /* Tinggi minimal untuk mobile */
+        box-sizing: border-box;
+    }
+
+    header#hero-main.hero-section::before { /* Overlay gelap */
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.35); z-index: 1;
+    }
+
+    header#hero-main.hero-section .hero-content-overlay-secondary {
+        position: relative; z-index: 2; display: flex; flex-direction: column;
+        align-items: center; width: 100%; max-width: 600px; padding: 20px;
+    }
+
+    header#hero-main.hero-section .hero-wedding-of-secondary { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 5px; }
+    header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 3.5rem; line-height: 1.1; color: #fcefee; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+    header#hero-main.hero-section .hero-date-secondary { font-size: 1.1rem; opacity: 0.9; margin-bottom: 25px; }
+    header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; color: #fff; }
+    header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 2rem; font-weight: bold; margin-bottom: 0; line-height: 1; color: #fcefee; }
+    header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 0.5px; }
+    header#hero-main.hero-section .hero-calendar-button-secondary { /* Kelas untuk tombol Simpan Tanggal di Hero */
+        border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.9); background-color: rgba(255,255,255,0.1);
+        padding: 8px 18px; font-size: 0.85rem; border-radius: 50px; transition: all 0.3s ease;
+        text-decoration: none; display: inline-flex; align-items: center;
+    }
+
+    header#hero-main.hero-section .hero-calendar-button-secondary:hover { background-color: rgba(255,255,255,0.25); color: #fff; border-color: #fff; }
    
-   /* ==========================================================================
+/*  ==========================================================================
       TAMPILAN DESKTOP (Split Screen: Welcome/Primary + Secondary)
-      ========================================================================== */
-   @media (min-width: 992px) {
-       .site-container {
-           display: flex !important; width: 100%; height: 100vh; overflow: hidden;
-       }
+    ========================================================================== */
+    @media (min-width: 992px) {
+        .site-container {
+            display: flex !important; width: 100%; height: 100vh; overflow: hidden;
+        }
    
-       #welcome-screen.primary-pane-desktop {
-           position: relative !important; flex: 0 0 60% !important; width: 60% !important;
-           height: 100vh !important; z-index: 10; box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-           overflow-y: auto; opacity: 1 !important; visibility: visible !important;
-           transition: none !important; /* Tidak ada transisi opacity/visibility di desktop */
-       }
-       #welcome-screen.primary-pane-desktop .welcome-content-area {
-           max-height: 85vh; width: 80%; max-width: 500px; margin-bottom: 5vh;
-           transform: translateY(0) !important; opacity: 1 !important; padding-bottom: 40px;
-       }
-       #welcome-screen.primary-pane-desktop.content-opened .welcome-content-area #open-invitation {
-           display: none !important; /* Sembunyikan tombol setelah konten utama terbuka */
-       }
-       #welcome-screen.primary-pane-desktop .welcome-content-area h2.font-esthetic.mb-4 {
-           margin-bottom: 1.5rem !important; /* Jarak default jika nama tamu & tombol tidak ada/hilang */
-       }
-       #welcome-screen.primary-pane-desktop #guest-name-container { /* Styling nama tamu di primary pane desktop */
-           display: block !important; margin-top: 20px; margin-bottom: 20px;
-       }
-       #welcome-screen.primary-pane-desktop #guest-name-container p { font-size: 0.9rem; color: #5D4037; opacity: 0.95; }
-       #welcome-screen.primary-pane-desktop #guest-name-display { font-size: 1.5rem; color: #4e342e; font-weight: bold; }
+        #welcome-screen.primary-pane-desktop {
+            position: relative !important; flex: 0 0 60% !important; width: 60% !important;
+            height: 100vh !important; z-index: 10; box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            overflow-y: auto; opacity: 1 !important; visibility: visible !important;
+            transition: none !important; /* Tidak ada transisi opacity/visibility di desktop */
+        }
+
+        #welcome-screen.primary-pane-desktop .welcome-content-area {
+            max-height: 85vh; width: 80%; max-width: 500px; margin-bottom: 5vh;
+            transform: translateY(0) !important; opacity: 1 !important; padding-bottom: 40px;
+        }
+
+        #welcome-screen.primary-pane-desktop.content-opened .welcome-content-area #open-invitation {
+            display: none !important; /* Sembunyikan tombol setelah konten utama terbuka */
+        }
+
+        #welcome-screen.primary-pane-desktop .welcome-content-area h2.font-esthetic.mb-4 {
+            margin-bottom: 1.5rem !important; /* Jarak default jika nama tamu & tombol tidak ada/hilang */
+        }
+
+        #welcome-screen.primary-pane-desktop #guest-name-container { /* Styling nama tamu di primary pane desktop */
+            display: block !important; margin-top: 20px; margin-bottom: 20px;
+        }
+
+        #welcome-screen.primary-pane-desktop #guest-name-container p { font-size: 0.9rem; color: #5D4037; opacity: 0.95; }
+        #welcome-screen.primary-pane-desktop #guest-name-display { font-size: 1.5rem; color: #4e342e; font-weight: bold; }
    
    
-       .secondary-pane-desktop {
-           display: block !important; flex: 1 !important; height: 100vh !important;
-           overflow-y: auto !important; position: relative; background-color: #fff;
-           opacity: 0; visibility: hidden; transform: translateX(30px) !important; /* Override Y dari mobile */
-           transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out, visibility 0s linear 0.8s;
-       }
+        .secondary-pane-desktop {
+            display: block !important; flex: 1 !important; height: 100vh !important;
+            overflow-y: auto !important; position: relative; background-color: #fff;
+            opacity: 0; visibility: hidden; transform: translateX(30px) !important; /* Override Y dari mobile */
+            transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out, visibility 0s linear 0.8s;
+        }
+
        .secondary-pane-desktop.active {
            opacity: 1; visibility: visible; transform: translateX(0) !important;
            transition-delay: 0s;
        }
    
-       /* Penyesuaian Hero Section di Secondary Pane pada DESKTOP */
-       header#hero-main.hero-section {
-           height: 100% !important; /* KUNCI: Mengisi tinggi .secondary-pane-desktop */
-           min-height: auto; /* Hapus min-height default jika height 100% */
-           padding: 80px 40px; /* Sesuaikan padding */
-           background-position: center 30%; /* Contoh: geser fokus BG agar pasangan terlihat */
-       }
-       header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 6rem; margin-bottom: 15px; }
-       header#hero-main.hero-section .hero-date-secondary { font-size: 1.3rem; margin-bottom: 35px; }
-       header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { gap: 30px; margin-bottom: 35px; }
-       header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 3.5rem; }
-       header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.8rem; }
-       header#hero-main.hero-section .hero-calendar-button-secondary { padding: 12px 28px; font-size: 0.9rem; }
+        /* Penyesuaian Hero Section di Secondary Pane pada DESKTOP */
+        header#hero-main.hero-section {
+            height: 100% !important; /* KUNCI: Mengisi tinggi .secondary-pane-desktop */
+            min-height: auto; /* Hapus min-height default jika height 100% */
+            padding: 80px 40px; /* Sesuaikan padding */
+            background-position: center 30%; /* Contoh: geser fokus BG agar pasangan terlihat */
+        }
+
+        header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 6rem; margin-bottom: 15px; }
+        header#hero-main.hero-section .hero-date-secondary { font-size: 1.3rem; margin-bottom: 35px; }
+        header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { gap: 30px; margin-bottom: 35px; }
+        header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 3.5rem; }
+        header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.8rem; }
+        header#hero-main.hero-section .hero-calendar-button-secondary { padding: 12px 28px; font-size: 0.9rem; }
    
-       section#tanggal-lokasi #countdown { display: none !important; }
-       .secondary-pane-desktop section.container,
-       .secondary-pane-desktop section.container-fluid { padding-left: 70px; padding-right: 70px; }
-       .secondary-pane-desktop > section:not(.hero-section):not(.container):not(.container-fluid) { padding: 40px 70px; }
-   }
+        section#tanggal-lokasi #countdown { display: none !important; }
+        .secondary-pane-desktop section.container,
+        .secondary-pane-desktop section.container-fluid { padding-left: 70px; padding-right: 70px; }
+        .secondary-pane-desktop > section:not(.hero-section):not(.container):not(.container-fluid) { padding: 40px 70px; }
+    }
    
-   /* ==========================================================================
+/*  ==========================================================================
       STYLING SECTION LAINNYA
-      ========================================================================== */
+    ========================================================================== */
    section {
        padding: 40px 20px; margin-bottom: 0; margin-top: 0 !important; background-color: white;
    }
