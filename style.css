@@ -128,6 +128,7 @@
         opacity: 1;
         visibility: visible;
         transform: translateY(0); /* Reset transform untuk mobile */
+        height: 100vh; /* KUNCI: Tinggi penuh layar */
     }
    
 /*  ==========================================================================
@@ -135,18 +136,26 @@
     ========================================================================== */
     header#hero-main.hero-section {
         background-image: url('assets/images/foto-pasangan-bersama-hero.jpeg'); /* GANTI DENGAN FOTO UTAMA HERO ANDA */
-        background-size: cover;
-        background-position: center; /* Default */
+        background-size: 170% auto;
+        background-position: center center; 
         color: #fff;
         padding: 60px 20px;
         text-align: center;
         position: relative;
-        display: flex;
+        display: flex; /* Parent dari .hero-content-overlay-secondary */
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 70vh; /* Tinggi minimal untuk mobile */
+        align-items: center; /* Pusatkan .hero-content-overlay-secondary secara horizontal */
+        justify-content: space-between; /* Tetap space-between */
+        width: 100%; /* Mengisi lebar parent */
+        max-width: 600px; /* Atau lebar yang Anda gunakan */
+        height: 100%; //* Penting untuk space-between */
         box-sizing: border-box;
+        overflow: hidden;
+        /* TAMBAHKAN ATAU NAIKKAN NILAI padding-top */
+        padding-top: 8vh; /* Contoh: 8% dari tinggi viewport. Coba nilai lain seperti 60px, 10vh, dll. */
+        padding-bottom: 5vh; /* Sesuaikan padding bawah juga jika perlu */
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     header#hero-main.hero-section::before { /* Overlay gelap */
@@ -155,8 +164,29 @@
     }
 
     header#hero-main.hero-section .hero-content-overlay-secondary {
-        position: relative; z-index: 2; display: flex; flex-direction: column;
-        align-items: center; width: 100%; max-width: 600px; padding: 20px;
+        position: relative; z-index: 2; display: flex; flex-direction: column; /* Arahkan item secara vertikal */
+        align-items: center;  /* Pusatkan item anak secara horizontal */
+        /* KUNCI UNTUK MEMISAHKAN ATAS DAN BAWAH: */
+        justify-content: space-between; /* Ini akan mendorong .hero-text-details-secondary ke atas
+                                        dan .hero-bottom-content (atau countdown+tombol) ke bawah,
+                                        dengan ruang kosong di antaranya jika tinggi overlay memungkinkan. */
+        width: 100%; max-width: 600px; /* Batasi lebar konten */
+        box-sizing: border-box;
+        height: 100%; /* Buat overlay mengisi tinggi hero agar space-between bekerja */
+        /* Atau jika hero tidak display:flex, atur tinggi spesifik untuk overlay ini */
+        /* min-height: 80vh; /* Pastikan overlay punya cukup tinggi */
+        /* TAMBAHKAN ATAU NAIKKAN NILAI padding-top */
+        padding-top: 12vh; /* Contoh: 8% dari tinggi viewport. Coba nilai lain seperti 60px, 10vh, dll. */
+        padding-bottom: 5vh; /* Sesuaikan padding bawah juga jika perlu */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Grup Teks Atas */
+    header#hero-main.hero-section .hero-text-details-secondary {
+        text-align: center; /* Pastikan teks di grup ini terpusat */
+        margin-bottom: 30px; /* Jarak ke elemen di bawahnya jika tidak ada space-between */
+        /* Tidak perlu margin-top jika justify-content:space-between bekerja */
     }
 
     header#hero-main.hero-section .hero-wedding-of-secondary { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 5px; }
@@ -172,6 +202,15 @@
     }
 
     header#hero-main.hero-section .hero-calendar-button-secondary:hover { background-color: rgba(255,255,255,0.25); color: #fff; border-color: #fff; }
+
+    /* Grup Bawah (Countdown dan Tombol) */
+    header#hero-main.hero-section .hero-bottom-content { /* Jika Anda menggunakan div pembungkus ini */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Pusatkan item di grup bawah */
+        text-align: center;
+        /* Tidak perlu margin-bottom jika justify-content:space-between bekerja */
+}
    
 /*  ==========================================================================
       TAMPILAN DESKTOP (Split Screen: Welcome/Primary + Secondary)
@@ -222,12 +261,25 @@
             height: 100% !important; /* KUNCI: Mengisi tinggi .secondary-pane-desktop */
             min-height: auto; /* Hapus min-height default jika height 100% */
             padding: 80px 40px; /* Sesuaikan padding */
-            background-position: center 30%; /* Contoh: geser fokus BG agar pasangan terlihat */
+            background-position: center 50%; /* Contoh: geser fokus BG agar pasangan terlihat */
+        }
+
+        header#hero-main.hero-section .hero-content-overlay-secondary {
+            padding: 60px 40px; /* Padding lebih besar di desktop */
+            max-width: 700px; /* Konten bisa sedikit lebih lebar */
+            /* justify-content: space-between; (sudah dari aturan global) */
+        }
+    
+        header#hero-main.hero-section .hero-text-details-secondary {
+            text-align: center;
+            /* Jika justify-content: center pada parent, kita bisa atur jarak dengan padding/margin */
+            padding-top: 10vh; /* Dorong dari atas */
+            padding-bottom: 5vh; /* Beri jarak ke elemen bawah */
         }
 
         header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 6rem; margin-bottom: 15px; }
         header#hero-main.hero-section .hero-date-secondary { font-size: 1.3rem; margin-bottom: 35px; }
-        header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { gap: 30px; margin-bottom: 35px; }
+        header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { gap: 30px; margin-bottom: 30px; }
         header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 3.5rem; }
         header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.8rem; }
         header#hero-main.hero-section .hero-calendar-button-secondary { padding: 12px 28px; font-size: 0.9rem; }
