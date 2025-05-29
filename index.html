@@ -30,10 +30,8 @@
 
 
         <!-- WELCOME SCREEN SEKALIGUS PRIMARY PANE DI DESKTOP -->
-        <aside id="welcome-screen" class="primary-pane-desktop" role="dialog" aria-modal="false" aria-labelledby="welcome-title-main">
-            <!-- Di mobile, ini akan jadi .loading-page full screen -->
-            <!-- Di desktop, ini akan jadi panel samping --> 
-        
+        <aside id="welcome-screen" class="primary-pane-desktop">
+            
             <div class="slideshow-background-container">
                 <div class="slide-bg active"><img src="assets/images/foto-utama-1.jpeg" alt="Foto prewedding Imam dan Thita 1"></div>
                 <div class="slide-bg"><img src="assets/images/foto-utama-2.jpeg" alt="Foto prewedding Imam dan Thita 2"></div>
@@ -63,17 +61,16 @@
         <main id="main-invitation-content" class="secondary-pane-desktop">
             <!-- Hero Section - SATU STRUKTUR untuk Mobile dan Desktop -->
             <header id="hero-main" class="hero-section">
-                <div class="hero-background-image-secondary"></div><!-- Atau atur background langsung di header#hero-main -->
                 <!-- Di dalam header#hero-main.hero-section -->
                 <div class="hero-content-overlay-secondary"> 
                     <!-- Grup Atas -->
-                    <div class=" ">
+                    <div class="hero-text-details-secondary">
                         <p class="hero-wedding-of-secondary">The Wedding of</p>
                         <h2 class="hero-names-secondary font-esthetic">Imam & Thita</h2> 
                         <p class="hero-date-secondary">12 JULI 2025</p> 
                     </div>
                     <!-- Grup Bawah -->
-                    <div class="hero-bottom-content"> <!-- Opsional: Pembungkus untuk elemen bawah -->
+                    <div class="hero-bottom-content"> 
                         <div id="countdown-hero" class="hero-countdown-secondary">
                             <div class="countdown-item"><h3 id="days-hero">0</h3><small>Days</small></div>
                             <div class="countdown-item"><h3 id="hours-hero">0</h3><small>Hours</small></div>
@@ -96,52 +93,56 @@
             <section id="mempelai" class="container" data-aos="fade-up">
                 <h2 class="text-center mb-4">Pasangan Mempelai</h2>
                 <div class="row text-center">
-                    <div class="col-md-6 mb-4">
-                        <div class="mempelai-foto-container"> <!-- KONTENER BARU -->
+                    <div class="col-md-6 mb-4" >
+                        <div class="mempelai-foto-container">
                             <img src="assets/images/foto-pria.jpeg" alt="Foto Imam Mukhri" class="mempelai-foto mempelai-foto-pria">  <!-- KELAS BARU: mempelai-foto-pria -->
                         </div>
                         <h3 class="font-esthetic">Imam Mukhri</h3>
-                        <p>Putra dari (alm) Bapak Mukhlish Irsan & <br>   <!-- TAMBAHKAN <br> DI SINI -->
+                        <p>Putra dari (alm) Bapak Mukhlish Irsan & <br> 
                            Ibu Asripa Rahmiwaty
                         </p>
                     </div>
                     <div class="col-md-6 mb-4">
-                        <div class="mempelai-foto-container"> <!-- KONTENER BARU -->
+                        <div class="mempelai-foto-container"> 
                             <img src="assets/images/foto-wanita.jpeg" alt="Foto Thita Rahani Azlia Nasution" class="mempelai-foto mempelai-foto-wanita">  <!-- KELAS BARU: mempelai-foto-wanita -->
                         </div>
                         <h3 class="font-esthetic">Thita Rahani Azlia Nasution</h3>
-                        <p>Putri dari Bapak Sutara Azhar Nasution & <br>   <!-- TAMBAHKAN <br> DI SINI -->
+                        <p>Putri dari Bapak Sutara Azhar Nasution & <br>  
                             Ibu Muthia Amalia Lubis
                         </p>
                     </div>
                 </div>
             </section>
 
-            <section id="tanggal-lokasi" class="container text-center py-5">
+            <section id="tanggal-lokasi" class="container py-5 text-center">
+                <h2 class="font-esthetic mb-4">Wedding Day</h2>
+                <p class="mb-5 lead" style="font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Kami memohon kehadiran Bapak/Ibu/Saudara/i dalam pelaksanaan Resepsi pernikahan kami yang akan diselenggarakan pada:
+                </p>
                 <div class="row justify-content-center">
-                    <div class="col-md-5 mb-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="col-md-5" data-aos="fade-right">
                         <div class="shadow p-4 rounded">
                             <h3 class="font-esthetic">Akad Nikah</h3>
                             <p><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>Sabtu, Tanggal: 12 Juli 2025</p>
                             <p><i class="fas fa-clock me-2" aria-hidden="true"></i>Waktu: Pukul 08.00 WIB</p>
                         </div>
                     </div>
-                    <div class="col-md-5 mb-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="col-md-5" data-aos="fade-left">
                         <div class="shadow p-4 rounded">
                             <h3 class="font-esthetic">Resepsi</h3>
                             <p><i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>Sabtu, Tanggal: 12 Juli 2025</p>
                             <p><i class="fas fa-clock me-2" aria-hidden="true"></i>Waktu: Pukul 11.00 WIB</p>
                         </div>
                     </div>
-                </div>
-                <div class="mt-4 shadow p-4 rounded">
-                    <h3 class="font-esthetic">Lokasi</h3>
-                    <p><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Grand Andaliman Hall <br>
-                        Jl. Abdullah Lubis No.79/101, Merdeka, Kec. Medan Baru, Kota Medan, Sumatera Utara 20153
-                    </p>
-                    <a href="https://maps.app.goo.gl/kcxY17HukNMPK8EU6" target="_blank" class="btn btn-outline-dark rounded-pill mt-2">
-                    <i class="fas fa-map-location-dot me-2" aria-hidden="true"></i>Lihat Peta
-                    </a> 
+                    <div class="mt-4 shadow p-4 rounded">
+                        <h3 class="font-esthetic">Lokasi</h3>
+                        <p><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>Grand Andaliman Hall <br>
+                            Jl. Abdullah Lubis No.79/101, Merdeka, Kec. Medan Baru, Kota Medan, Sumatera Utara 20153
+                        </p>
+                        <a href="https://maps.app.goo.gl/kcxY17HukNMPK8EU6" target="_blank" class="btn btn-outline-dark rounded-pill mt-2">
+                        <i class="fas fa-map-location-dot me-2" aria-hidden="true"></i>Lihat Peta
+                        </a> 
+                    </div>
                 </div>
             </section>
 
@@ -154,13 +155,13 @@
 
                 <div class="row justify-content-center g-4">
                     <!-- Kolom Bank Transfer -->
-                    <div class="col-md-5" data-aos="fade-up">
+                    <div class="col-md-5" data-aos="fade-up"> 
                         <div class="card shadow-sm h-100">
                             <div class="card-body">
                                 <h4 class="font-esthetic mb-3"> <i class="fas fa-money-bill-wave me-2" aria-hidden="true"></i> Transfer Bank</h4>
                                 <img src="assets/images/logo-bri.png" alt="Logo Bank BRI" style="max-height: 35px;" class="mb-3">
                                 <p class="mb-1">Bank Rakyat Indonesia (BRI)</p>
-                                <p class="fw-bold fs-5 mb-2" id="norek">7018 0100 6421 505</p>
+                                <p class="fw-bold fs-5 mb-2">7018 0100 6421 505</p>
                                 <p class="mb-3">a.n. IMAM MUKHRI</p>
                                 <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard('7018 0100 6421 505', this)">
                                     <i class="fas fa-copy me-1" aria-hidden="true"></i> Salin No. Rekening
@@ -175,7 +176,7 @@
                                 <h4 class="font-esthetic mb-3"> <i class="fas fa-money-bill-wave me-2" aria-hidden="true"></i> Transfer Bank</h4>
                                 <img src="assets/images/logo-bsi.png" alt="Logo Bank BRI" style="max-height: 35px;" class="mb-3">
                                 <p class="mb-1">Bank Syariah Indonesia (BSI)</p>
-                                <p class="fw-bold fs-5 mb-2" id="norek">811 7788 200</p>
+                                <p class="fw-bold fs-5 mb-2">811 7788 200</p>
                                 <p class="mb-3">a.n. Thita Rahani Azlia Nasution</p>
                                 <button class="btn btn-sm btn-outline-dark rounded-pill" onclick="copyToClipboard('811 7788 200', this)">
                                     <i class="fas fa-copy me-1" aria-hidden="true"></i> Salin No. Rekening
@@ -185,7 +186,7 @@
                     </div>
 
                     <!-- Kolom Kirim Kado / Alamat -->
-                    <div class="col-md-5" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-5" data-aos="fade-up" data-aos-delay="250">
                         <div class="card shadow-sm h-100">
                             <div class="card-body">
                                 <h4 class="font-esthetic mb-3"><i class="fas fa-gift me-2" aria-hidden="true"></i> Kirim Kado</h4>

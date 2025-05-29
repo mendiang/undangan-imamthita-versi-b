@@ -1,16 +1,6 @@
 // Pesan untuk cek apakah file JS termuat (cukup sekali)
 console.log("Script.js loaded and executing...");
 
-// --- Fungsi untuk Menampilkan Gambar di Modal Galeri ---
-function showImage(src) {
-    const modalImage = document.getElementById('modalImage');
-    if (modalImage) {
-        modalImage.src = src;
-    } else {
-        console.error("Elemen #modalImage tidak ditemukan!");
-    }
-}
-
 // --- Event Listener untuk DOMContentLoaded (Semua kode utama masuk sini) ---
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM fully loaded and parsed.");
@@ -42,10 +32,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const guestName = urlParams.get('to'); // Ambil nama tamu dari URL
 
     // --- Inisialisasi AOS ---
-    if (typeof AOS !== 'undefined') { // Periksa apakah AOS sudah dimuat
-        AOS.init({ duration: 800, once: true, offset: 50 });
+    // 1. Buat "catatan" apakah AOS sudah berhasil disiapkan.
+    //    Awalnya kita anggap belum (false).
+    let aosInitialized = false; // 'aosInitialized' itu seperti saklar, awalnya 'mati'
+    // 2. Cek apakah "alat ajaib" AOS memang ada di halaman web kita.
+    //    'typeof AOS !== 'undefined'' artinya "Apakah AOS itu ada dan bukan sesuatu yang kosong?"
+    if (typeof AOS !== 'undefined') { 
+        // 3. Jika AOS ADA, kita siapkan pengaturannya!
+        AOS.init({ 
+            duration: 800, // Berapa lama animasi berlangsung? (0.4 detik)
+            easing: 'ease-out-cubic', // Easing yang natural
+            once: true, // Apakah animasi hanya muncul SEKALI saja? (Ya, benar)
+            offset: 50, // Seberapa jauh elemen harus masuk layar sebelum animasi dimulai? (100 pixel)
+            mirror: false // Hindari re-animasi
+        });
+        // 4. Setelah berhasil disiapkan, ubah "catatan" kita jadi "sudah siap".
+        aosInitialized = true; // Nyalakan saklar 'aosInitialized' jadi 'hidup'
         console.log("AOS Initialized");
+    // 6. Jika AOS TIDAK ADA (mungkin filenya lupa dimasukkan):
     } else {
+        // Beri peringatan di konsol bahwa alat ajaib AOS tidak ditemukan.
         console.warn("AOS library not found.");
     }
 
@@ -80,27 +86,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Fungsi Inisialisasi State Layar (Welcome & Pane) ---
     function initializeScreenState() {
+        // 1. Cek Ukuran Layar: Apakah ini tampilan komputer (desktop) atau HP (mobile)?
         const isDesktop = window.innerWidth >= DESKTOP_BREAKPOINT;
         console.log("initializeScreenState: isDesktop =", isDesktop, "| guestName dari URL =", guestName);
 
-        updateGuestNameVisibility(); // Panggil di awal untuk kedua mode
+        // 2. Tampilkan Nama Tamu (jika ada di alamat web)
+        updateGuestNameVisibility(); 
 
+        // 3. Jika Tampilan DESKTOP (layar lebar):
         if (isDesktop) {
-            console.log("INIT: Mode Desktop");
+            console.log("Oke, ini tampilan DESKTOP!");
+            // Atur agar body halaman bisa di-scroll (jika sebelumnya tidak bisa)
             document.body.classList.remove('no-scroll-global');
             document.body.classList.add('desktop-layout-active');
 
-            if (welcomeScreen) {
-                welcomeScreen.setAttribute('aria-modal', 'false');
-                welcomeScreen.classList.add('primary-pane-desktop');
-                welcomeScreen.classList.add('content-opened'); // Langsung anggap konten "terbuka"
+            // Atur tampilan layar selamat datang (yang ada di kiri)
+            if (welcomeScreen) { // 'welcomeScreen' itu elemen layar kiri
+                welcomeScreen.setAttribute('aria-modal', 'false'); // Bukan lagi pop-up penuh
+                welcomeScreen.classList.add('primary-pane-desktop'); // Gaya khusus untuk panel kiri desktop
+                welcomeScreen.classList.add('content-opened'); // Anggap konten utama sudah "dibuka""
                 welcomeScreen.style.opacity = ''; welcomeScreen.style.visibility = ''; welcomeScreen.style.display = '';
             }
-            if (secondaryPane) {
+
+            // Atur tampilan panel konten utama (yang ada di kanan dan bisa di-scroll)
+            if (secondaryPane) { // 'secondaryPane' itu elemen panel kanan
+                const secondaryPaneWasActive = secondaryPane.classList.contains('active'); // Cek apakah panel kanan sudah aktif sebelumnya
                 secondaryPane.style.display = ''; // Biarkan CSS media query yang atur display:block
-                requestAnimationFrame(() => secondaryPane.classList.add('active')); // Langsung aktifkan animasi masuk
-                console.log("INIT Desktop: Secondary Pane diaktifkan (kelas .active ditambahkan)");
-            }
+                secondaryPane.classList.remove('visible-mobile'); // Bersihkan kelas mobile jika ada
+                // Minta browser untuk siap-siap sebelum kita munculkan panel kanan
+                requestAnimationFrame(() => { 
+                    secondaryPane.classList.add('active'); // Tambahkan kelas 'active' agar panel kanan muncul dengan animasi
+                    console.log("Panel kanan di desktop dimunculkan!");
+
+                    // Jika panel kanan BARU SAJA menjadi aktif dan AOS (animasi saat scroll) sudah siap:
+                    if (aosInitialized && !secondaryPaneWasActive) {
+                        // Tunggu sebentar (900 milidetik) agar animasi munculnya panel kanan selesai
+                        setTimeout(() => {
+                            console.log("Sekarang, kita kasih tau AOS (animasi scroll) untuk ngecek ulang posisi elemen di panel kanan.");
+                            AOS.refresh(); // Ini penting agar animasi scroll tahu posisi elemen yang benar
+                            console.log("AOS sudah di-refresh untuk desktop.");
+                        }, 700); // // 
+                    }
+                });
+            }  
             // Tombol #open-invitation di primary pane akan disembunyikan oleh CSS
             // karena #welcome-screen memiliki kelas .content-opened
 
@@ -118,9 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (welcomeScreen) {
                     welcomeScreen.style.opacity = '0'; welcomeScreen.style.visibility = 'hidden';
                 }
+
                 if (secondaryPane) secondaryPane.style.display = 'block';
                 document.body.classList.remove('no-scroll-global');
+
                 if (openInvitationButton) openInvitationButton.style.display = 'none';
+                // Jika dari resize dan sudah visible, AOS seharusnya sudah di-refresh saat pertama kali dibuka
+                // atau akan di-refresh oleh event resize jika kita tambahkan logika itu.
+                // Untuk sekarang, kita fokus pada refresh saat PERTAMA KALI dibuka.
             } else { // Welcome screen masih aktif / load awal mobile
                 if (welcomeScreen) {
                     welcomeScreen.style.opacity = '1'; welcomeScreen.style.visibility = 'visible';
@@ -132,12 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (openInvitationButton) {
                     openInvitationButton.style.display = ''; // Pastikan tombol Buka Undangan terlihat
-                    console.log("INIT Mobile: Tombol Buka Undangan ditampilkan.");
+                    // console.log("INIT Mobile: Tombol Buka Undangan ditampilkan.");
                 }
                 document.body.classList.add('no-scroll-global');
             }
         }
     }
+
     initializeScreenState(); // Panggil saat load pertama
 
     // --- Fungsi Handle Klik Tombol Buka Undangan ---
@@ -154,13 +188,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isDesktop) {
-            // Di desktop, tombol ini seharusnya sudah disembunyikan oleh CSS via .content-opened.
-            // Logika ini sebagai fallback jika tombol masih bisa diklik.
-            if (secondaryPane && !secondaryPane.classList.contains('active')) {
-                requestAnimationFrame(() => secondaryPane.classList.add('active'));
+            // Di mode desktop, initializeScreenState seharusnya sudah menangani tampilan.
+            // Tombol ini idealnya tidak terlihat atau tidak melakukan aksi signifikan terkait layout lagi.
+            console.log("Tombol Buka Undangan ditekan di mode desktop. Layout sudah diatur oleh initializeScreenState.");
+            // Anda bisa memastikan kelas-kelas penting tetap ada jika diperlukan sebagai fallback:
+            if (welcomeScreen && !welcomeScreen.classList.contains('content-opened')) {
+            welcomeScreen.classList.add('content-opened');
             }
-            if (welcomeScreen) welcomeScreen.classList.add('content-opened'); // Pastikan kelas ada
-            document.body.classList.add('desktop-layout-active'); // Pastikan body state benar
+            if (document.body && !document.body.classList.contains('desktop-layout-active')) {
+                document.body.classList.add('desktop-layout-active');
+            }
+        // Tidak perlu mengaktifkan secondaryPane lagi jika sudah aktif dari initializeScreenState
         } else { // Mobile
             if (welcomeScreen) {
                 welcomeScreen.style.opacity = '0';
@@ -168,7 +206,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (secondaryPane) {
                 secondaryPane.style.display = 'block'; // Pastikan display block sebelum animasi
-                requestAnimationFrame(() => secondaryPane.classList.add('visible-mobile'));
+                requestAnimationFrame(() => {
+                    secondaryPane.classList.add('visible-mobile');
+                    if (aosInitialized) {
+                        // Transisi .secondary-pane-desktop.visible-mobile (dari CSS Anda):
+                        // opacity 0.5s 0.1s, transform 0.5s 0.1s
+                        // Total waktu = 0.1s (delay) + 0.5s (duration) = 0.6s = 600ms
+                        // Beri buffer sedikit
+                        setTimeout(() => {
+                            console.log("Attempting AOS.refresh() for MOBILE...");
+                            AOS.refresh();
+                            console.log("AOS REFRESHED for MOBILE.");
+                        }, 700); // 600ms + 100ms buffer
+                    }
+                });
             }
             document.body.classList.remove('no-scroll-global');
         }
@@ -212,12 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const interval = setInterval(function() {
-            // Untuk countdown original (bukan hero), hanya update jika di mobile atau jika elemennya visible
-            // Di desktop, countdown original (di section#tanggal-lokasi) disembunyikan oleh CSS.
-            if (!isHeroCountdown && (window.innerWidth >= DESKTOP_BREAKPOINT && getComputedStyle(countdownContainer).display === 'none')) {
-                // Tidak perlu update jika tidak terlihat di desktop
-                return;
-            }
 
             const now = new Date().getTime();
             const distance = targetDate - now;
@@ -240,13 +285,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const targetWeddingDate = new Date("July 12, 2025 08:00:00").getTime(); // Ganti dengan tanggal Anda
     // Inisialisasi countdown untuk hero (akan aktif jika elemennya ada, terutama di desktop)
-    initializeCountdown(targetWeddingDate, "days-hero", "hours-hero", "minutes-hero", "seconds-hero", "countdown-hero", "The day is here!", true);
-    // Inisialisasi countdown original (akan aktif jika elemennya ada, terutama di mobile)
-    initializeCountdown(targetWeddingDate, "days", "hours", "minutes", "seconds", "countdown", "Acara Telah Dimulai!");
+    initializeCountdown(targetWeddingDate, "days-hero", "hours-hero", "minutes-hero", "seconds-hero", "countdown-hero", "Acara Telah Dimulai!", true);
 
     // Resize listener untuk handle perubahan layout
-    window.addEventListener('resize', initializeScreenState);
-
+    window.addEventListener('resize', () => {
+        initializeScreenState();
+    // Pertimbangkan untuk refresh AOS juga saat resize, terutama jika layout berubah signifikan
+        // Namun, ini bisa menyebabkan animasi berulang jika `once: false`.
+        // Jika `once: true`, refresh saat resize mungkin diperlukan jika breakpoint berubah
+        // dan elemen yang tadinya tidak ada/berbeda posisi kini perlu dianimasikan.
+        if (aosInitialized) {
+            console.log("Attempting AOS.refresh() on RESIZE...");
+            // AOS.refresh(); // Hati-hati dengan ini jika tidak ingin animasi berulang pada setiap resize.
+                           // Mungkin perlu logika lebih canggih di sini.
+                           // Untuk sekarang, kita biarkan refresh utama ada di initializeScreenState (untuk desktop load)
+                           // dan handleOpenInvitation (untuk mobile open).
+        }
+    });
 }); // --- Akhir dari DOMContentLoaded ---
 
 // --- Fungsi untuk Menyalin Teks ke Clipboard ---

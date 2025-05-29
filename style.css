@@ -17,27 +17,24 @@
     /* Mencegah scroll pada body saat diperlukan */
     body.no-scroll-global,
     body.desktop-layout-active {
-        overflow: hidden;
-    }
+        overflow: hidden; /* OVERRIDE: Mengubah 'overflow' default body (biasanya 'visible' atau 'auto') */
+    } 
    
 /*  ==========================================================================
       2. Typography & Utility Classes
     ========================================================================== */
     .font-esthetic {
         font-family: 'Great Vibes', cursive;
-        font-weight: normal;
-    }
-   
-    .d-none { /* Dari Bootstrap, bisa ada di custom CSS juga */
-        display: none !important;
+        font-weight: normal; /* POTENTIAL OVERRIDE: Jika ada 'font-weight' lain yang di-set pada elemen yang juga memiliki class ini */
     }
    
     a {
         color: #007bff;
-        text-decoration: none;
+        text-decoration: none; 
     }
+
     a:hover {
-        text-decoration: underline;
+        text-decoration: underline; /* OVERRIDE: Mengubah 'text-decoration' dari 'none' saat hover */
     }
    
 /*  ==========================================================================
@@ -48,7 +45,7 @@
         inset: 0;
         width: 100%;
         height: 100vh; /* Fallback */
-        height: -webkit-fill-available; /* Untuk browser berbasis WebKit di iOS */
+        /* height: -webkit-fill-available;  Untuk browser berbasis WebKit di iOS */
         z-index: 1056;
         opacity: 1;
         visibility: visible;
@@ -58,9 +55,9 @@
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
-        overflow: hidden;
+        overflow: hidden; /* OVERRIDE: Mengubah 'overflow' default (biasanya 'visible') */
     }
-   
+
     .slideshow-background-container {
         position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;
     }
@@ -70,7 +67,7 @@
         opacity: 0; transition: opacity 1.2s ease-in-out;
     }
 
-    .slideshow-background-container .slide-bg.active { opacity: 1; }
+    .slideshow-background-container .slide-bg.active { opacity: 1; } /* OVERRIDE: Mengubah 'opacity' dari '0' menjadi '1' saat class 'active' ditambahkan */
     .slideshow-background-container .slide-bg img {
         width: 100%; height: 100%; object-fit: cover; object-position: center;
     }
@@ -83,30 +80,41 @@
    
     .welcome-content-area {
         position: relative; z-index: 3; width: 100%; max-width: 480px; height: auto; max-height: 70vh;
-        color: #382a22;
         padding: 30px 25px 25px 25px; border-top-left-radius: 30px; border-top-right-radius: 30px;
         overflow-y: auto; text-align: center; box-sizing: border-box;
         opacity: 0; transform: translateY(80px);
         transition: opacity 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.7s 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    #welcome-screen.loaded .welcome-content-area { opacity: 1; transform: translateY(0); }
+    #welcome-screen.loaded .welcome-content-area { 
+        opacity: 1;  /* OVERRIDE: Mengubah 'opacity' dari '0' ke '1' */
+        transform: translateY(0); /* OVERRIDE: Mengubah 'transform' dari 'translateY(80px)' ke 'translateY(0)' */
+    }
    
-    .welcome-content-area .font-esthetic { color:#FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); font-size: 2rem; line-height: 1.2; }
-    .welcome-content-area h2.font-esthetic.mb-3 { font-size: 1.6rem; margin-bottom: 0.25rem !important; font-weight: normal; }
-    .welcome-content-area h2.font-esthetic.mb-4 { font-size: 2.8rem; margin-bottom: 1.2rem !important; }
-    .welcome-content-area #guest-name-container { margin-bottom: 1.2rem !important; }
+    .welcome-content-area .font-esthetic { color:#FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); font-size: 2rem; line-height: 1.2; } /* Selektor di atas lebih spesifik daripada .font-esthetic, jadi akan meng-override color, font-size, line-height jika elemen memiliki kedua class/konteks */
+    .welcome-content-area h2.font-esthetic.mb-4 { 
+        font-size: 2.8rem; /* OVERRIDE: 'font-size' dari '.welcome-content-area .font-esthetic' (jika berlaku pada h2) */
+    } 
+    .welcome-content-area #guest-name-container { margin-bottom: 1.2rem; } /* PERUBAHAN: !important dihapus. Jika elemen ini memiliki class Bootstrap .mb-4 (1.5rem !important), maka Bootstrap akan menang. */
     .welcome-content-area #guest-name-container p { font-size: 0.85rem; color:#f0f0f0; opacity: 0.9; margin-bottom: 0.15rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);}
     .welcome-content-area #guest-name-display { font-size: 1.3rem; font-weight: bold; color: #FFFFFF; text-shadow: 1px 1px 4px rgba(0,0,0,0.7);}
     .welcome-content-area #open-invitation {
         background-color: #5D4037; color: white; border: none; 
-        font-size: 2rem; font-weight: bold; margin-top: 25px; 
+        font-size: 2rem; /* Ini adalah nilai dasar, akan di-override di media query mobile kecil. */
+        font-weight: bold; margin-top: 25px; 
         transition: background-color 0.3s ease, transform 0.2s ease;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
-    .welcome-content-area #open-invitation:hover { background-color: #4e342e; border-color: white; transform: translateY(-2px); }
-    .welcome-content-area #open-invitation:active { transform: translateY(0px); }
+    .welcome-content-area #open-invitation:hover { 
+        background-color: #4e342e; /* OVERRIDE: 'background-color' dari state normal */
+        border-color: white;  /* OVERRIDE: 'border-color' (jika ada, atau dari Bootstrap jika ini adalah .btn) */
+        transform: translateY(-2px); /* OVERRIDE: 'transform' dari state normal */
+    }
+
+    .welcome-content-area #open-invitation:active { 
+        transform: translateY(0px); /* OVERRIDE: 'transform' dari state hover */
+    }
    
 /*  ==========================================================================
       LAYOUT UTAMA UNDANGAN (Site Container & Panes)
@@ -116,7 +124,6 @@
     .secondary-pane-desktop { /* Target <main class="secondary-pane-desktop"> */
         width: 100%; /* Default untuk mobile */
         display: block; /* Selalu block, visibilitas diatur opacity/visibility */
-        background-color: #fff; /* Background dasar konten */
         opacity: 0;
         visibility: hidden;
         transform: translateY(20px); /* Efek masuk default untuk mobile */
@@ -125,9 +132,9 @@
 
     .secondary-pane-desktop.visible-mobile,
     .secondary-pane-desktop.active { /* Kelas untuk menampilkan */
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0); /* Reset transform untuk mobile */
+        opacity: 1; /* OVERRIDE: 'opacity' dari 0 */
+        visibility: visible; /* OVERRIDE: 'visibility' dari hidden */
+        transform: translateY(0); /* OVERRIDE: 'transform' dari translateY(20px) */ 
         height: 100vh; /* KUNCI: Tinggi penuh layar */
     }
    
@@ -139,7 +146,7 @@
         background-size: 170% auto;
         background-position: center center; 
         color: #fff;
-        padding: 60px 20px;
+        padding: 60px 20px; /* Ini adalah padding dasar. padding-top dan padding-bottom di bawah akan meng-override bagian atas dan bawahnya. */
         text-align: center;
         position: relative;
         display: flex; /* Parent dari .hero-content-overlay-secondary */
@@ -148,14 +155,10 @@
         justify-content: space-between; /* Tetap space-between */
         width: 100%; /* Mengisi lebar parent */
         max-width: 600px; /* Atau lebar yang Anda gunakan */
-        height: 100%; //* Penting untuk space-between */
+        height: 100%; /* Penting untuk space-between */
         box-sizing: border-box;
-        overflow: hidden;
-        /* TAMBAHKAN ATAU NAIKKAN NILAI padding-top */
-        padding-top: 8vh; /* Contoh: 8% dari tinggi viewport. Coba nilai lain seperti 60px, 10vh, dll. */
-        padding-bottom: 5vh; /* Sesuaikan padding bawah juga jika perlu */
-        padding-left: 20px;
-        padding-right: 20px;
+        overflow: hidden; /* OVERRIDE: 'overflow' default */
+        padding: 8vh 20px 5vh 20px; /* top | horizontal | bottom */
     }
 
     header#hero-main.hero-section::before { /* Overlay gelap */
@@ -170,13 +173,14 @@
         justify-content: space-between; /* Ini akan mendorong .hero-text-details-secondary ke atas
                                         dan .hero-bottom-content (atau countdown+tombol) ke bawah,
                                         dengan ruang kosong di antaranya jika tinggi overlay memungkinkan. */
-        width: 100%; max-width: 600px; /* Batasi lebar konten */
+        width: 100%;
         box-sizing: border-box;
         height: 100%; /* Buat overlay mengisi tinggi hero agar space-between bekerja */
         /* Atau jika hero tidak display:flex, atur tinggi spesifik untuk overlay ini */
         /* min-height: 80vh; /* Pastikan overlay punya cukup tinggi */
         /* TAMBAHKAN ATAU NAIKKAN NILAI padding-top */
-        padding-top: 12vh; /* Contoh: 8% dari tinggi viewport. Coba nilai lain seperti 60px, 10vh, dll. */
+        padding-top: 12vh;  /* Contoh: 8% dari tinggi viewport. Coba nilai lain seperti 60px, 10vh, dll. */
+                            /* Padding spesifik untuk konten di dalam overlay ini. */
         padding-bottom: 5vh; /* Sesuaikan padding bawah juga jika perlu */
         padding-left: 20px;
         padding-right: 20px;
@@ -185,23 +189,15 @@
     /* Grup Teks Atas */
     header#hero-main.hero-section .hero-text-details-secondary {
         text-align: center; /* Pastikan teks di grup ini terpusat */
-        margin-bottom: 30px; /* Jarak ke elemen di bawahnya jika tidak ada space-between */
-        /* Tidak perlu margin-top jika justify-content:space-between bekerja */
     }
 
     header#hero-main.hero-section .hero-wedding-of-secondary { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-bottom: 5px; }
-    header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 3.5rem; line-height: 1.1; color: #fcefee; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+    header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 3.5rem; line-height: 1.1; color: #fcefee; margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); } /* Akan di-override di desktop */
     header#hero-main.hero-section .hero-date-secondary { font-size: 1.1rem; opacity: 0.9; margin-bottom: 25px; }
     header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; color: #fff; }
     header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 2rem; font-weight: bold; margin-bottom: 0; line-height: 1; color: #fcefee; }
     header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 0.5px; }
-    header#hero-main.hero-section .hero-calendar-button-secondary { /* Kelas untuk tombol Simpan Tanggal di Hero */
-        border: 1px solid rgba(255,255,255,0.6); color: rgba(255,255,255,0.9); background-color: rgba(255,255,255,0.1);
-        padding: 8px 18px; font-size: 0.85rem; border-radius: 50px; transition: all 0.3s ease;
-        text-decoration: none; display: inline-flex; align-items: center;
-    }
-
-    header#hero-main.hero-section .hero-calendar-button-secondary:hover { background-color: rgba(255,255,255,0.25); color: #fff; border-color: #fff; }
+    
 
     /* Grup Bawah (Countdown dan Tombol) */
     header#hero-main.hero-section .hero-bottom-content { /* Jika Anda menggunakan div pembungkus ini */
@@ -210,61 +206,67 @@
         align-items: center; /* Pusatkan item di grup bawah */
         text-align: center;
         /* Tidak perlu margin-bottom jika justify-content:space-between bekerja */
-}
+    }
    
 /*  ==========================================================================
       TAMPILAN DESKTOP (Split Screen: Welcome/Primary + Secondary)
     ========================================================================== */
     @media (min-width: 992px) {
+
         .site-container {
-            display: flex !important; width: 100%; height: 100vh; overflow: hidden;
+            display: flex; width: 100%; height: 100vh; 
+            overflow: hidden; /* OVERRIDE: 'overflow' default body jika tidak di-set di body.desktop-layout-active */
         }
    
-        #welcome-screen.primary-pane-desktop {
-            position: relative !important; flex: 0 0 60% !important; width: 60% !important;
-            height: 100vh !important; z-index: 10; box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-            overflow-y: auto; opacity: 1 !important; visibility: visible !important;
-            transition: none !important; /* Tidak ada transisi opacity/visibility di desktop */
+        #welcome-screen.primary-pane-desktop { /* OVERRIDE KESELURUHAN dari #welcome-screen (aturan umum/mobile) */
+            position: relative; /* OVERRIDE: dari 'fixed' */
+            flex: 0 0 60%; 
+            width: 60%; /* OVERRIDE: dari '100%' */
+            height: 100vh; z-index: 10; box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            overflow-y: auto; /* OVERRIDE: dari 'hidden' di #welcome-screen */
+            opacity: 1; visibility: visible;
+            transition: none; /* OVERRIDE: dari transisi opacity/visibility di #welcome-screen */
         }
 
-        #welcome-screen.primary-pane-desktop .welcome-content-area {
-            max-height: 85vh; width: 80%; max-width: 500px; margin-bottom: 5vh;
-            transform: translateY(0) !important; opacity: 1 !important; padding-bottom: 40px;
+        #welcome-screen.primary-pane-desktop .welcome-content-area { /* OVERRIDE dari .welcome-content-area (aturan umum/mobile) */
+            max-height: 85vh; /* OVERRIDE: dari '70vh' */
+            width: 80%; /* OVERRIDE: dari '100%' */
+            max-width: 500px; /* OVERRIDE: dari '480px' */
+            margin-bottom: 5vh;
+            transform: translateY(0); opacity: 1; 
+            padding-bottom: 40px; /* OVERRIDE: bagian dari 'padding' di .welcome-content-area */
         }
 
         #welcome-screen.primary-pane-desktop.content-opened .welcome-content-area #open-invitation {
-            display: none !important; /* Sembunyikan tombol setelah konten utama terbuka */
-        }
-
-        #welcome-screen.primary-pane-desktop .welcome-content-area h2.font-esthetic.mb-4 {
-            margin-bottom: 1.5rem !important; /* Jarak default jika nama tamu & tombol tidak ada/hilang */
+            display: none; /* OVERRIDE: Menyembunyikan tombol yang sebelumnya display default */
         }
 
         #welcome-screen.primary-pane-desktop #guest-name-container { /* Styling nama tamu di primary pane desktop */
-            display: block !important; margin-top: 20px; margin-bottom: 20px;
+            display: block; margin-top: 20px; 
+            margin-bottom: 20px; /* PERUBAHAN: Ini akan menjadi 20px di desktop. */
         }
    
-        .secondary-pane-desktop {
-            display: block !important; flex: 1 !important; height: 100vh !important;
-            overflow-y: auto !important; position: relative; background-color: #fff;
-            opacity: 0; visibility: hidden; transform: translateX(30px) !important; /* Override Y dari mobile */
-            transition: opacity 0.6s 0.2s ease-out, transform 0.6s 0.2s ease-out, visibility 0s linear 0.8s;
+        .secondary-pane-desktop { /* OVERRIDE dari .secondary-pane-desktop (aturan umum/mobile) */
+            flex: 1 ; height: 100vh ;
+            overflow-y: auto ; position: relative; 
+            opacity: 0; visibility: 
+            hidden; transform: translateX(30px) ; /* OVERRIDE: dari 'translateY(20px)' di aturan mobile */
         }
 
-       .secondary-pane-desktop.active {
-           opacity: 1; visibility: visible; transform: translateX(0) !important;
-           transition-delay: 0s;
-       }
-   
+        .secondary-pane-desktop.active { /* OVERRIDE dari '.secondary-pane-desktop' (state awal desktop) */
+           opacity: 1; visibility: visible; 
+           transform: translateX(0) ; /* OVERRIDE: dari translateX(30px) */
+           transition-delay: 0s; /* OVERRIDE: dari 0.2s (opacity, transform) dan 0.8s (visibility) */
+        }
+
         /* Penyesuaian Hero Section di Secondary Pane pada DESKTOP */
         header#hero-main.hero-section {
-            height: 100% !important; /* KUNCI: Mengisi tinggi .secondary-pane-desktop */
-            min-height: auto; /* Hapus min-height default jika height 100% */
-            padding: 80px 40px; /* Sesuaikan padding */
-            background-position: center 50%; /* Contoh: geser fokus BG agar pasangan terlihat */
+           /* OVERRIDE dari 'header#hero-main.hero-section' (aturan umum/mobile) */
+            padding: 80px 40px; /* OVERRIDE: 'padding' dari aturan mobile */
+            background-position: center 50%; //* OVERRIDE: 'background-position' dari aturan mobile ('center center') */
         }
 
-        header#hero-main.hero-section .hero-content-overlay-secondary {
+        header#hero-main.hero-section .hero-content-overlay-secondary { /* OVERRIDE dari 'header#hero-main.hero-section .hero-content-overlay-secondary' (aturan umum/mobile) */
             padding: 60px 40px; /* Padding lebih besar di desktop */
             max-width: 700px; /* Konten bisa sedikit lebih lebar */
             /* justify-content: space-between; (sudah dari aturan global) */
@@ -273,8 +275,8 @@
         header#hero-main.hero-section .hero-text-details-secondary {
             text-align: center;
             /* Jika justify-content: center pada parent, kita bisa atur jarak dengan padding/margin */
-            padding-top: 10vh; /* Dorong dari atas */
-            padding-bottom: 5vh; /* Beri jarak ke elemen bawah */
+            /*padding-top: 10vh;  Dorong dari atas */
+            /* padding-bottom: 5vh; Beri jarak ke elemen bawah */
         }
 
         header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 6rem; margin-bottom: 15px; }
@@ -282,24 +284,33 @@
         header#hero-main.hero-section #countdown-hero.hero-countdown-secondary { gap: 30px; margin-bottom: 30px; }
         header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 3.5rem; }
         header#hero-main.hero-section #countdown-hero .countdown-item small { font-size: 0.8rem; }
-        header#hero-main.hero-section .hero-calendar-button-secondary { padding: 12px 28px; font-size: 0.9rem; }
    
-        section#tanggal-lokasi #countdown { display: none !important; }
         .secondary-pane-desktop section.container,
-        .secondary-pane-desktop section.container-fluid { padding-left: 70px; padding-right: 70px; }
-        .secondary-pane-desktop > section:not(.hero-section):not(.container):not(.container-fluid) { padding: 40px 70px; }
+        .secondary-pane-desktop section.container-fluid { 
+            padding-left: 70px; /* OVERRIDE: 'padding-left' dari Bootstrap .container/.container-fluid atau dari 'section' umum */
+            padding-right: 70px; /* OVERRIDE: 'padding-right' dari Bootstrap .container/.container-fluid atau dari 'section' umum */
+        }
+        .secondary-pane-desktop > section:not(.hero-section):not(.container):not(.container-fluid) { 
+            padding: 40px 70px;  /* OVERRIDE: 'padding' dari 'section' umum */
+        }
     }
    
 /*  ==========================================================================
       STYLING SECTION LAINNYA
     ========================================================================== */
-   section {
-       padding: 40px 20px; margin-bottom: 0; margin-top: 0 !important; background-color: white;
-   }
-   section#mempelai, section#tanggal-lokasi { background-color: #fff; }
-   section#galeri, #love-gift { background-color: #f8f9fa; }
+    section {
+       padding: 40px 20px; margin-bottom: 0; margin-top: 0; background-color: white;
+    }
 
-   .mempelai-foto-container {
+    section#mempelai {
+    min-height: 400px; /* Atau nilai yang cukup untuk kontennya */
+    /* background-color: lightyellow; */ /* Opsional untuk debugging visual */
+    }
+    
+    #tanggal-lokasi { background-color: #f8f9fa; /* OVERRIDE: 'background-color' dari 'section' umum (white) */ }
+    #love-gift { background-color: #f8f9fa; /* OVERRIDE: 'background-color' dari 'section' umum (white) */}
+
+    .mempelai-foto-container {
         width: 160px; /* Tentukan LEBAR yang diinginkan untuk area bulat */
         height: 160px; /* Tentukan TINGGI yang SAMA dengan lebar untuk membuatnya persegi */
         border-radius: 50%; /* Ini yang membuatnya bulat */
@@ -320,7 +331,7 @@
     .mempelai-foto.mempelai-foto-pria {
         object-position: top left; /* Contoh: fokus sedikit ke atas dari tengah, sesuaikan untuk foto pria */
         /* Atau bisa juga: object-position: top center; */
-        transform: scale(1.7);
+        transform: scale(1.7); /* OVERRIDE: dari 'transform' default */
         transform-origin: 40% center ;
     }
 
@@ -345,18 +356,40 @@
    /* ... (Sisa styling Anda untuk elemen spesifik di section: #countdown (mobile), #mempelai img, #galeri img, #love-gift .card, footer, separator) ... */
    
    /* Media Query untuk Mobile Kecil (jika ada penyesuaian lebih lanjut) */
-   @media (max-width: 576px) {
+    @media (max-width: 576px) {
        .welcome-content-area {
-           max-width: 100%; border-top-left-radius: 20px; border-top-right-radius: 20px;
-           padding: 25px 20px 20px 20px; max-height: 80vh;
-       }
-       .welcome-content-area h2.font-esthetic.mb-3 { font-size: 1.4rem; }
+           /* OVERRIDE dari '.welcome-content-area' (aturan umum) */
+           max-width: 100%; 
+           border-top-left-radius: 20px; /* OVERRIDE: dari '30px' */
+           border-top-right-radius: 20px; /* OVERRIDE: dari '30px' */
+           padding: 25px 20px 20px 20px; /* OVERRIDE: dari '30px 25px 25px 25px' */
+           max-height: 80vh; /* OVERRIDE: dari '70vh' */
+        }
+
+       .welcome-content-area h2.font-esthetic.mb-3 { /* OVERRIDE dari '.welcome-content-area #guest-name-display' (aturan umum) */
+        font-size: 1.4rem; /* OVERRIDE: dari '1.3rem' */
+        }
+
        .welcome-content-area h2.font-esthetic.mb-4 { font-size: 2.2rem; }
        .welcome-content-area #guest-name-display { font-size: 1.1rem; }
-       .welcome-content-area #open-invitation { padding: 10px 25px; font-size: 0.9rem; }
+       .welcome-content-area #open-invitation { /* OVERRIDE dari '.welcome-content-area #open-invitation' (aturan umum) */
+        padding: 10px 25px; /* OVERRIDE */
+        font-size: 0.9rem; /* OVERRIDE: dari '2rem' */
+        }
    
-       header#hero-main.hero-section { padding: 50px 15px 30px 15px; min-height: 60vh; }
-       header#hero-main.hero-section .hero-names-secondary.font-esthetic { font-size: 2.8rem; }
-       header#hero-main.hero-section #countdown-hero .countdown-item h3 { font-size: 1.8rem; }
-       section { padding: 30px 15px; }
-   }
+       header#hero-main.hero-section { /* OVERRIDE dari 'header#hero-main.hero-section' (aturan umum dan desktop) */
+       padding: 50px 15px 30px 15px; /* OVERRIDE */
+       min-height: 60vh; /* Penambahan/Override */
+       }
+
+       header#hero-main.hero-section .hero-names-secondary.font-esthetic { /* OVERRIDE dari 'header#hero-main.hero-section .hero-names-secondary.font-esthetic' (aturan umum dan desktop) */
+       font-size: 2.8rem; /* OVERRIDE: dari '3.5rem' (umum) atau '6rem' (desktop) */
+       }
+
+       header#hero-main.hero-section #countdown-hero .countdown-item h3 { /* OVERRIDE dari 'header#hero-main.hero-section #countdown-hero .countdown-item h3' (aturan umum dan desktop) */
+       font-size: 1.8rem; /* OVERRIDE: dari '2rem' (umum) atau '3.5rem' (desktop) */
+       }
+       section { /* OVERRIDE dari 'section' (aturan umum) dan dari aturan padding di desktop */
+       padding: 30px 15px; /* OVERRIDE: dari '40px 20px' (umum) atau '40px 70px' (desktop untuk section tertentu) */
+       }
+    }
