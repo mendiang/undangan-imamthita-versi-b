@@ -1,0 +1,11 @@
+# netlify.toml
+[build]
+  command = "npm run build" # Ganti jika Anda punya build script lain, atau hapus jika tidak ada
+  publish = "."           # Ganti dengan direktori publik Anda (misal "dist", "public", atau "." jika di root)
+  functions = "netlify/functions" # Direktori tempat Anda akan menyimpan kode fungsi
+
+# Redirect agar fungsi bisa diakses dari /api/*
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

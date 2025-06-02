@@ -302,7 +302,185 @@ document.addEventListener('DOMContentLoaded', () => {
                            // dan handleOpenInvitation (untuk mobile open).
         }
     });
+
+    const messageForm = document.getElementById('message-form');
+    const submitButton = document.getElementById('submitMessageBtn');
+    const formStatus = document.getElementById('form-status');
+    const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+    const guestCountGroup = document.getElementById('guestCountGroup');
+    const formGuestCountInput = document.getElementById('formGuestCount');
+
+
+    if (attendanceRadios && guestCountGroup && formGuestCountInput) {
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Hadir' && this.checked) {
+                    guestCountGroup.style.display = 'block';
+                    formGuestCountInput.required = true;
+                } else {
+                    guestCountGroup.style.display = 'none';
+                    formGuestCountInput.required = false;
+                }
+            });
+        });
+    }
+
+    if (messageForm && submitButton && formStatus) {
+        messageForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Mengirim...';
+            formStatus.textContent = '';
+            formStatus.className = 'mt-3'; // Reset class
+
+            const formData = new FormData(messageForm);
+            const data = {
+                guestName: formData.get('guestName'),
+                attendance: formData.get('attendance'),
+                guestMessage: formData.get('guestMessage'),
+                timestamp: new Date().toISOString() 
+            };
+
+            // Hanya tambahkan guestCount jika hadir
+            if (data.attendance === 'Hadir') {
+                data.guestCount = parseInt(formData.get('guestCount')) || 1;
+            }
+
+
+            try {
+            // GANTI DENGAN URL ENDPOINT NETLIFY FUNCTION ANDA
+            // Biasanya /api/nama-file-fungsi (tanpa .js)
+            const response = await fetch('/api/submit-message', { // URL ini akan di-redirect oleh Netlify
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), // data adalah objek dari formulir
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                formStatus.innerHTML = `<div class="alert alert-success" role="alert">${result.message || 'Pesan Anda berhasil terkirim. Terima kasih!'}</div>`;
+                messageForm.reset();
+                if(guestCountGroup) guestCountGroup.style.display = 'none';
+                if(formGuestCountInput) formGuestCountInput.required = false;
+                fetchAndDisplayMessages(); // <--- TAMBAHKAN INI UNTUK REFRESH
+            } else {
+                const errorResult = await response.json();
+                formStatus.innerHTML = `<div class="alert alert-danger" role="alert">${errorResult.error || 'Gagal mengirim pesan. Silakan coba lagi.'}</div>`;
+                console.error("Server error:", response.status, errorResult);
+            }
+            } catch (error) {   
+                formStatus.innerHTML = '<div class="alert alert-danger" role="alert">Terjadi kesalahan. Periksa koneksi internet Anda dan coba lagi.</div>';
+                console.error("Network or other error:", error);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Kirim Pesan';
+            }
+        });
+    }
+    
+    const messagesContainer = document.getElementById('messages-container');
+
+    // Fungsi untuk membersihkan dan menampilkan pesan
+    function renderMessages(messagesArray) {
+        if (!messagesContainer) return;
+        messagesContainer.innerHTML = ''; // Kosongkan kontainer dulu
+
+        if (!messagesArray || messagesArray.length === 0) {
+            messagesContainer.innerHTML = '<p class="text-muted text-center">Belum ada ucapan. Jadilah yang pertama!</p>';
+            return;
+        }
+
+        // Urutkan pesan: terbaru di atas (opsional, jika belum diurutkan dari backend/fungsi)
+        messagesArray.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+
+        messagesArray.forEach(msgData => {
+            // Hanya tampilkan pesan jika ada isinya
+            if (msgData.message && msgData.message.trim() !== "") {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('mb-3', 'p-3', 'border-bottom'); // Sedikit styling
+                
+                let attendanceBadge = '';
+                if (msgData.attendance === 'Hadir') {
+                    attendanceBadge = `<span class="badge bg-success ms-2">Hadir</span>`;
+                } else if (msgData.attendance === 'Tidak Hadir') {
+                    attendanceBadge = `<span class="badge bg-secondary ms-2">Tidak Hadir</span>`;
+                }
+
+                messageElement.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 font-esthetic">${escapeHtml(msgData.name || 'Seorang Tamu')} ${attendanceBadge}</h5>
+                        ${msgData.timestamp ? `<small class="text-muted">${new Date(msgData.timestamp).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</small>` : ''}
+                    </div>
+                    <p class="mb-0 mt-1">${escapeHtml(msgData.message)}</p>
+                `;
+                messagesContainer.appendChild(messageElement);
+            }
+        });
+    }
+
+    // Fungsi untuk mengambil semua pesan saat halaman dimuat
+    async function fetchAndDisplayMessages() {
+        if (!messagesContainer) return;
+        messagesContainer.innerHTML = '<p class="text-muted text-center">Memuat ucapan...</p>'; // Pesan loading
+
+        try {
+            const response = await fetch('/api/get-messages'); // Panggil Netlify Function Anda
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const result = await response.json();
+
+            if (result.success && result.messages) {
+                renderMessages(result.messages);
+            } else {
+                console.error("Gagal mengambil pesan:", result.error);
+                messagesContainer.innerHTML = '<p class="text-danger text-center">Gagal memuat ucapan.</p>';
+            }
+        } catch (error) {
+            console.error("Error fetching messages: ", error);
+            if (messagesContainer) {
+                messagesContainer.innerHTML = '<p class="text-danger text-center">Terjadi kesalahan saat memuat ucapan.</p>';
+            }
+        }
+    }
+    
+    // Panggil fungsi untuk memuat pesan saat halaman dimuat
+    fetchAndDisplayMessages();
+
+    // Modifikasi form submission untuk memicu refresh pesan setelah submit sukses
+    if (messageForm) {
+        messageForm.addEventListener('submit', async function(event) {
+            // ... (kode submit Anda yang sudah ada) ...
+
+            // Di dalam blok try, setelah fetch POST berhasil:
+            // if (response.ok) {
+            //     const result = await response.json();
+            //     formStatus.innerHTML = `<div class="alert alert-success" role="alert">${result.message || 'Pesan Anda berhasil terkirim. Terima kasih!'}</div>`;
+            //     messageForm.reset();
+            //     if(guestCountGroup) guestCountGroup.style.display = 'none';
+            //     if(formGuestCountInput) formGuestCountInput.required = false;
+                   
+            //     fetchAndDisplayMessages(); // PANGGIL LAGI UNTUK REFRESH DAFTAR PESAN
+            // } else { ... }
+            // ...
+        });
+    }
+
 }); // --- Akhir dari DOMContentLoaded ---
+
+// Fungsi escapeHtml (pastikan ada di scope global atau di dalam DOMContentLoaded)
+function escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return '';
+    return unsafe
+         .replace(/&/g, "&")
+         .replace(/</g, "<")
+         .replace(/>/g, ">")
+         .replace(/"/g, "\"")
+         .replace(/'/g, "'");
+}
 
 // --- Fungsi untuk Menyalin Teks ke Clipboard ---
 function copyToClipboard(textToCopy, buttonElement) {

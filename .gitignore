@@ -1,0 +1,6 @@
+# .gitignore
+.env
+node_modules/
+# file lain yang tidak ingin di-commit
+# Local Netlify folder
+.netlify
