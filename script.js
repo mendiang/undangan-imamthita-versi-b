@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 messageElement.innerHTML = `
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0 font-esthetic">${escapeHtml(msgData.name || 'Seorang Tamu')} ${attendanceBadge}</h5>
+                        <h5 class="mb-0 font-esthetic-readable">${escapeHtml(msgData.name || 'Seorang Tamu')} ${attendanceBadge}</h5>
                         ${msgData.timestamp ? `<small class="text-muted">${new Date(msgData.timestamp).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</small>` : ''}
                     </div>
                     <p class="mb-0 mt-1">${escapeHtml(msgData.message)}</p>
