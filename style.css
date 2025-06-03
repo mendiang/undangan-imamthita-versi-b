@@ -1,7 +1,7 @@
 /*  ==========================================================================
     1. Google Fonts Import & Reset
     ========================================================================== */
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
     /* Basic Reset & Body Styling */
     body {
@@ -26,6 +26,14 @@
     .font-esthetic {
         font-family: 'Great Vibes', cursive;
         font-weight: normal; /* POTENTIAL OVERRIDE: Jika ada 'font-weight' lain yang di-set pada elemen yang juga memiliki class ini */
+    }
+
+    .font-esthetic-readable { /* KELAS BARU */
+    font-family: 'Playfair Display', serif;
+    font-weight: 600; /* Default weight untuk Playfair, bisa disesuaikan */
+        /* Jika ingin semua huruf kapital, bisa tambahkan: */
+        /* text-transform: uppercase; */ 
+        /* letter-spacing: 0.05em; /* Sedikit spasi antar huruf jika uppercase */
     }
    
     a {
