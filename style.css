@@ -3,6 +3,18 @@
     ========================================================================== */
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+/*  ==========================================================================
+    Font Kustom Lokal
+    ========================================================================== */
+    @font-face {
+        font-family: 'Swingly Lours'; /* Nama yang akan Anda gunakan di CSS */
+        src: url('assets/fonts/SwinglyLours.woff2') format('woff2'),
+             url('assets/fonts/SwinglyLours.woff') format('woff');
+        font-weight: normal; /* Atau sesuaikan dengan weight fontnya */
+        font-style: normal;  /* Atau sesuaikan dengan style fontnya */
+        font-display: swap; /* Untuk performa rendering teks yang lebih baik */ 
+    }
+
     /* Basic Reset & Body Styling */
     body {
         font-family: 'Montserrat', sans-serif;
@@ -29,8 +41,8 @@
     }
 
     .font-esthetic-readable { /* KELAS BARU */
-    font-family: 'Playfair Display', serif;
-    font-weight: 600; /* Default weight untuk Playfair, bisa disesuaikan */
+    font-family: 'Swingly Lours', serif;
+    /* font-weight: 600;  Default weight untuk Playfair, bisa disesuaikan */
         /* Jika ingin semua huruf kapital, bisa tambahkan: */
         /* text-transform: uppercase; */ 
         /* letter-spacing: 0.05em; /* Sedikit spasi antar huruf jika uppercase */
