@@ -420,4 +420,5 @@
         color: #ffffff;           /* Warna teks, pastikan kontras */
         /* Anda bisa menyalin padding, font-size, dll. dari .btn-lg jika Anda menghapus .btn-primary */
         /* atau biarkan Bootstrap menangani itu jika Anda masih menggunakan .btn dan .btn-lg */
+        font-weight: bold
     }
