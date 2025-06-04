@@ -413,3 +413,11 @@
        padding: 30px 15px; /* OVERRIDE: dari '40px 20px' (umum) atau '40px 70px' (desktop untuk section tertentu) */
        }
     }
+
+    .btn-kirim-custom {
+        background-color: #5D4037; /* Ganti dengan warna latar yang Anda inginkan */
+        border-color: #5D4037;    /* Warna border, samakan atau sesuaikan */
+        color: #ffffff;           /* Warna teks, pastikan kontras */
+        /* Anda bisa menyalin padding, font-size, dll. dari .btn-lg jika Anda menghapus .btn-primary */
+        /* atau biarkan Bootstrap menangani itu jika Anda masih menggunakan .btn dan .btn-lg */
+    }
