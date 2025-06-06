@@ -327,8 +327,8 @@
     /* background-color: lightyellow; */ /* Opsional untuk debugging visual */
     }
     
-    #tanggal-lokasi { background-color: #f8f9fa; /* OVERRIDE: 'background-color' dari 'section' umum (white) */ }
-    #love-gift { background-color: #f8f9fa; /* OVERRIDE: 'background-color' dari 'section' umum (white) */}
+    #tanggal-lokasi { background-color: #f8f9fa; /* OVERRIDE: 'background-color' dari 'section' umum (white)*/  } 
+    #love-gift { background-color: #f4f4f4; /* OVERRIDE: 'background-color' dari 'section' umum (white)*/} 
 
     .mempelai-foto-container {
         width: 160px; /* Tentukan LEBAR yang diinginkan untuk area bulat */
