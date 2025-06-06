@@ -146,8 +146,7 @@
         display: block; /* Selalu block, visibilitas diatur opacity/visibility */
         opacity: 0;
         visibility: hidden;
-        transform: translateY(20px); /* Efek masuk default untuk mobile */
-        transition: opacity 0.5s 0.1s ease-out, visibility 0s linear 0.6s, transform 0.5s 0.1s ease-out;
+        transform: translateY(30px); /* Efek masuk default untuk mobile */
     }
 
     .secondary-pane-desktop.visible-mobile,
