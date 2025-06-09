@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Script untuk Slideshow Background Welcome Screen ---
     const bgSlides = document.querySelectorAll('.slideshow-background-container .slide-bg');
     let currentBgSlide = 0;
-    const bgSlideInterval = 5000;
+    const bgSlideInterval = 4000;
     function nextBgSlide() {
         if (bgSlides.length === 0) return;
         bgSlides[currentBgSlide].classList.remove('active');
