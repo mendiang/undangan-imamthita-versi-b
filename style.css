@@ -143,7 +143,6 @@
    
     .secondary-pane-desktop { /* Target <main class="secondary-pane-desktop"> */
         width: 100%; /* Default untuk mobile */
-        display: block; /* Selalu block, visibilitas diatur opacity/visibility */
         opacity: 0;
         visibility: hidden;
         transform: translateY(30px); /* Efek masuk default untuk mobile */
